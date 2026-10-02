@@ -35,10 +35,9 @@ export function ChatWidget() {
 
   // Focus the composer whenever the panel opens so typing starts immediately.
   useEffect(() => {
-    if (open) {
-      const raf = requestAnimationFrame(() => textareaRef.current?.focus());
-      return () => cancelAnimationFrame(raf);
-    }
+    if (!open) return;
+    const raf = requestAnimationFrame(() => textareaRef.current?.focus());
+    return () => cancelAnimationFrame(raf);
   }, [open]);
 
   const busy = status === "submitted" || status === "streaming";
