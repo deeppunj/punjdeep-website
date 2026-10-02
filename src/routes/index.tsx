@@ -108,8 +108,7 @@ function Index() {
           PhD · Physics-Informed Data Scientist & AI Specialist
         </div>
         <h1 id="hero-title" className="max-w-[14ch] text-5xl font-semibold leading-[1.04] text-balance sm:text-6xl lg:text-7xl">
-          Turning physical laws into{" "}
-          <span className="accent-text">predictive AI</span>.
+          Website's work in progress
         </h1>
         <p className="mt-7 max-w-[52ch] text-xl leading-relaxed text-foreground/80 sm:text-2xl">
           I translate conservation laws and governing equations into differentiable,
