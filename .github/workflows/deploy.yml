@@ -37,7 +37,7 @@ jobs:
         run: | 
           if [ -d "./.output/public" ]; then 
             mkdir -p ./dist 
-            cp -r ./.output/public/\* ./dist/ 
+            cp -r ./.output/public/* ./dist/ 
           fi
         
       - name: Upload artifact 
