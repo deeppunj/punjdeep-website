@@ -179,11 +179,12 @@ export function ChatWidget() {
         className="fixed bottom-4 right-4 z-50 inline-flex size-14 items-center justify-center rounded-full border-2 border-primary/50 bg-primary text-primary-foreground shadow-[var(--card-shadow-hover)] transition-transform hover:scale-105 sm:bottom-5 sm:right-5"
         onClick={() => setOpen((v) => !v)}
       >
-        {open ? (
-          <X className="size-6" aria-hidden />
-        ) : (
-          <MessageCircle className="size-6" aria-hidden />
-        )}
+        <span className={open ? "inline-flex" : "hidden"} aria-hidden>
+          <X className="size-6" />
+        </span>
+        <span className={open ? "hidden" : "inline-flex"} aria-hidden>
+          <MessageCircle className="size-6" />
+        </span>
       </button>
     </>
   );
