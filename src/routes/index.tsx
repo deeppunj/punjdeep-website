@@ -111,8 +111,7 @@ function Index() {
           Website's work in progress
         </h1>
         <p className="mt-7 max-w-[52ch] text-xl leading-relaxed text-foreground/80 sm:text-2xl">
-          I translate conservation laws and governing equations into differentiable,
-          deployable models — so neural networks respect the physics they describe.
+          Optical Engineering PhD applying statistical modeling, SQL, Python, and machine learning to solve real-world analytics challenges.
         </p>
         <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-base font-medium text-foreground/85" aria-label="Areas of expertise">
           {["Physics-informed ML", "Surrogate modeling", "Production AI"].map((item) => (
