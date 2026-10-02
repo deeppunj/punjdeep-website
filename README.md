@@ -1,5 +1,4 @@
-# DeepDive Portfolio
-
+# Deep Punj website
 Build a modern, minimalist dark-mode portfolio website for Deep Punj, PhD — Physics-Informed Data Scientist & AI Specialist. Include a hero section with high-impact bio, a 3-column project showcase grid (with buttons for Live Demo, GitHub code, and Article write-up), a categorized technical skill matrix (Python, SQL, PyTorch, Streamlit, MLOps), an About section bridging physics to AI, and a contact footer.
 
 This project was built with [Lovable](https://lovable.dev).
