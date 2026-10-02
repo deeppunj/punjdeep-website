@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { SiteHeader } from "@/components/site-header";
+import { PROJECTS } from "@/lib/projects";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,39 +28,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const NAV = [
-  { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
-  { label: "About", href: "#about" },
-];
-
-const PROJECTS = [
-  {
-    id: "01",
-    tag: "Neural PDEs",
-    title: "PINN Flow Solver",
-    description:
-      "Physics-informed neural network that embeds the Navier–Stokes residual directly in the loss, cutting mesh dependence on turbulent boundary layers.",
-    metrics: ["residual 0.002", "200× CFD speedup"],
-  },
-  {
-    id: "02",
-    tag: "Surrogate Modeling",
-    title: "Heat Exchanger Surrogate",
-    description:
-      "Graph neural surrogate reproducing conjugate heat transfer in milliseconds — replacing hours-long CFD sweeps in design loops.",
-    metrics: ["41× faster", "±1.2% error"],
-  },
-  {
-    id: "03",
-    tag: "Time-Series",
-    title: "Grid Load Forecasting",
-    description:
-      "Transformer with conservation-aware positional encoding that forecasts electrical load while enforcing energy-balance constraints.",
-    metrics: ["+72h horizon", "energy-balanced"],
-  },
-];
 
 const SKILLS: { category: string; items: { name: string; level: string }[] }[] = [
   {
@@ -117,7 +86,7 @@ const PHASES = [
 
 function SectionHeading({ index, title, note }: { index: string; title: string; note?: string }) {
   return (
-    <div className="mb-10 flex items-end justify-between border-b border-border pb-5">
+    <div className="mb-10 flex flex-wrap items-end justify-between gap-2 border-b border-border pb-5">
       <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
       <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
         {index}
@@ -129,40 +98,16 @@ function SectionHeading({ index, title, note }: { index: string; title: string; 
 
 function Index() {
   return (
-    <div className="min-h-screen scroll-smooth font-display antialiased">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-8">
-          <a href="#" className="font-mono text-sm font-medium tracking-tight">
-            deep<span className="text-primary">.</span>punj
-          </a>
-          <nav className="flex items-center gap-6 text-sm text-muted-foreground sm:gap-8">
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="hidden transition-colors hover:text-foreground sm:inline"
-              >
-                {item.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              className="rounded-full bg-primary px-4 py-1.5 font-medium text-primary-foreground transition-opacity hover:opacity-85"
-            >
-              Contact
-            </a>
-          </nav>
-        </div>
-      </header>
-
+    <div className="min-h-screen font-display antialiased">
+      <SiteHeader />
+      <main id="main">
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pb-20 pt-16 sm:px-8 sm:pt-24">
+      <section aria-labelledby="hero-title" className="mx-auto max-w-6xl px-5 pb-20 pt-12 sm:px-8 sm:pt-24">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
           <span className="size-1.5 rounded-full bg-primary" />
           PhD · Physics-Informed Data Scientist & AI Specialist
         </div>
-        <h1 className="max-w-[14ch] text-5xl font-semibold leading-[1.04] tracking-tight text-balance sm:text-6xl lg:text-7xl">
+        <h1 id="hero-title" className="max-w-[14ch] text-4xl font-semibold leading-[1.04] tracking-tight text-balance sm:text-6xl lg:text-7xl">
           Turning physical laws into{" "}
           <span className="text-primary">predictive AI</span>.
         </h1>
@@ -184,7 +129,7 @@ function Index() {
             Get in touch
           </a>
         </div>
-        <dl className="mt-12 flex gap-10 border-t border-border pt-6">
+        <dl className="mt-12 grid grid-cols-3 gap-4 sm:flex sm:gap-10 border-t border-border pt-6">
           {[
             { value: "12+", label: "Publications" },
             { value: "40+", label: "Models shipped" },
@@ -192,7 +137,7 @@ function Index() {
           ].map((stat) => (
             <div key={stat.label}>
               <dt className="sr-only">{stat.label}</dt>
-              <dd className="text-2xl font-semibold">{stat.value}</dd>
+              <dd className="text-xl font-semibold sm:text-2xl">{stat.value}</dd>
               <dd className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                 {stat.label}
               </dd>
@@ -202,9 +147,9 @@ function Index() {
       </section>
 
       {/* Selected work */}
-      <section id="work" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20 sm:px-8">
+      <section id="work" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8">
         <SectionHeading index="01" title="Selected work" note="03 projects" />
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((project) => (
             <article
               key={project.id}
@@ -214,7 +159,13 @@ function Index() {
                 <span>{project.id} · {project.tag}</span>
               </div>
               <h3 className="text-xl font-semibold leading-snug tracking-tight">
-                {project.title}
+                <Link
+                  to="/projects/$slug"
+                  params={{ slug: project.slug }}
+                  className="hover:text-primary"
+                >
+                  {project.title}
+                </Link>
               </h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {project.description}
@@ -230,21 +181,32 @@ function Index() {
                 ))}
               </div>
               <div className="mt-6 flex flex-wrap gap-2">
+                <Link
+                  to="/projects/$slug"
+                  params={{ slug: project.slug }}
+                  aria-label={`Case study: ${project.title}`}
+                  className="inline-flex min-h-9 items-center rounded-full border border-primary/50 px-3.5 text-xs font-medium text-primary"
+                >
+                  Details
+                </Link>
                 <a
-                  href="#"
-                  className="rounded-full bg-primary px-3.5 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-85"
+                  href={project.links.demo}
+                  aria-label={`Live demo: ${project.title}`}
+                  className="inline-flex min-h-9 items-center rounded-full bg-primary px-3.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-85"
                 >
                   Live demo
                 </a>
                 <a
-                  href="#"
-                  className="rounded-full border border-border px-3.5 py-1.5 text-xs font-medium transition-colors hover:border-primary/50 hover:text-primary"
+                  href={project.links.github}
+                  aria-label={`GitHub: ${project.title}`}
+                  className="inline-flex min-h-9 items-center rounded-full border border-border px-3.5 text-xs font-medium transition-colors hover:border-primary/50 hover:text-primary"
                 >
                   GitHub
                 </a>
                 <a
-                  href="#"
-                  className="rounded-full border border-border px-3.5 py-1.5 text-xs font-medium transition-colors hover:border-primary/50 hover:text-primary"
+                  href={project.links.article}
+                  aria-label={`Article: ${project.title}`}
+                  className="inline-flex min-h-9 items-center rounded-full border border-border px-3.5 text-xs font-medium transition-colors hover:border-primary/50 hover:text-primary"
                 >
                   Article
                 </a>
@@ -255,7 +217,7 @@ function Index() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20 sm:px-8">
+      <section id="skills" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8">
         <SectionHeading index="02" title="Skill matrix" note="categorized" />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SKILLS.map((group) => (
@@ -282,7 +244,7 @@ function Index() {
       </section>
 
       {/* About */}
-      <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20 sm:px-8">
+      <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8">
         <SectionHeading index="03" title="From physics to AI" note="the throughline" />
         <div className="grid gap-10 lg:grid-cols-12">
           <p className="max-w-[54ch] text-lg leading-relaxed text-foreground/90 lg:col-span-7">
@@ -309,8 +271,9 @@ function Index() {
         </div>
       </section>
 
+      </main>
       {/* Contact footer */}
-      <footer id="contact" className="mx-auto max-w-6xl scroll-mt-20 px-6 pb-10 sm:px-8">
+      <footer id="contact" className="mx-auto max-w-6xl scroll-mt-20 px-5 pb-10 sm:px-8">
         <div className="mt-8 flex flex-col justify-between gap-8 border-t border-border py-14 md:flex-row md:items-end">
           <div>
             <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-primary">
@@ -318,12 +281,12 @@ function Index() {
             </p>
             <a
               href="mailto:deep.punj@example.com"
-              className="text-3xl font-semibold tracking-tight transition-colors hover:text-primary sm:text-4xl"
+              className="break-all text-2xl font-semibold tracking-tight transition-colors hover:text-primary sm:text-4xl"
             >
               deep.punj@example.com
             </a>
           </div>
-          <div className="flex gap-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+          <nav aria-label="Social" className="flex flex-wrap gap-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
             <a href="#" className="transition-colors hover:text-foreground">
               GitHub
             </a>
@@ -333,9 +296,9 @@ function Index() {
             <a href="#" className="transition-colors hover:text-foreground">
               Scholar
             </a>
-          </div>
+          </nav>
         </div>
-        <p className="border-t border-border pt-6 pb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground/70">
+        <p className="border-t border-border pt-6 pb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           © 2026 Deep Punj — Physics-Informed Data Scientist & AI Specialist
         </p>
       </footer>
