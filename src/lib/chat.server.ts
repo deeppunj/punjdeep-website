@@ -1,5 +1,4 @@
 import { convertToModelMessages, type UIMessage } from "ai";
-import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 
 import { createResponsesCall } from "./ai/responses";
@@ -45,11 +44,7 @@ function rateLimited(ip: string): boolean {
 const messageSchema = z.object({
   id: z.string().min(1),
   role: z.enum(["user", "assistant", "system"]),
-  parts: z.array(
-    z.object({
-      type: z.string(),
-    }).passthrough(),
-  ),
+  parts: z.array(z.object({ type: z.string() }).passthrough()),
 }).passthrough();
 
 const bodySchema = z.object({
@@ -81,44 +76,45 @@ export async function handleChat(request: Request): Promise<Response> {
     .slice(0, 2000)
     .trim();
 
-  // Fire-and-forget question log; never blocks or breaks the stream.
-  if (questionText) {
-    logQuestion(questionText, questionText).catch((error) => console.error("question log failed:", error));
+  // Log the question (and later its answer summary); never blocks or breaks the stream.
+  const logged = questionText ? logQuestion(questionText) : null;
+  if (logged) {
+    logged.catch((error) => console.error("question log failed:", error));
   }
 
-  const { result, response } = createResponsesCall(request, { baseURL: GATEWAY_URL, apiKey: process.env.LOVABLE_API_KEY!, model: MODEL }, [
-    { role: "system", content: SYSTEM_PROMPT },
-    ...(await convertToModelMessages(messages)),
-  ]);
+  const { result, response } = createResponsesCall(
+    request,
+    { baseURL: GATEWAY_URL, apiKey: process.env.LOVABLE_API_KEY!, model: MODEL },
+    [{ role: "system", content: SYSTEM_PROMPT }, ...(await convertToModelMessages(messages))],
+  );
 
-  // Persist a short answer summary when the stream finishes.
-  if (questionText) {
-    void result.text
-      .then((text) => logAnswer(questionText, text.slice(0, 500)))
-      .catch(() => {});
+  if (logged) {
+    void (async () => {
+      try {
+        const rowId = await logged;
+        const text = await result.text;
+        await updateAnswerSummary(rowId, text.slice(0, 500));
+      } catch {
+        // Logging is best-effort; the chat must keep working.
+      }
+    })();
   }
 
   return response();
 }
 
-async function logQuestion(question: string, answerSummary: string | null) {
-  const supabase = createClient(
-    process.env.SUPABASE_URL ?? import.meta.env.VITE_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_ANON_KEY!,
-    { auth: { autoRefreshToken: false, persistSession: false } },
-  );
-  const { error } = await supabase.from("recruiter_questions").insert({
-    question,
-    answer_summary: answerSummary,
-  });
+async function logQuestion(question: string): Promise<string> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { data, error } = await supabaseAdmin
+    .from("recruiter_questions")
+    .insert({ question })
+    .select("id")
+    .single();
   if (error) throw new Error(error.message);
+  return data.id;
 }
 
-async function logAnswer(question: string, answerSummary: string) {
-  const supabase = createClient(
-    process.env.SUPABASE_URL ?? import.meta.env.VITE_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_ANON_KEY!,
-    { auth: { autoRefreshToken: false, persistSession: false } },
-  );
-  await supabase.from("recruiter_questions").update({ answer_summary: answerSummary }).eq("question", question);
+async function updateAnswerSummary(rowId: string, answerSummary: string) {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  await supabaseAdmin.from("recruiter_questions").update({ answer_summary: answerSummary }).eq("id", rowId);
 }
