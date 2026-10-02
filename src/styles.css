@@ -51,51 +51,51 @@
 :root {
   --radius: 0.5rem;
   color-scheme: light;
-  --background: oklch(0.985 0.004 95);
-  --foreground: oklch(0.2 0.01 270);
+  --background: oklch(0.975 0.005 95);
+  --foreground: oklch(0.18 0.012 270);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.01 270);
+  --card-foreground: oklch(0.18 0.012 270);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.01 270);
-  --primary: oklch(0.5 0.12 60);
+  --popover-foreground: oklch(0.18 0.012 270);
+  --primary: oklch(0.52 0.15 62);
   --primary-foreground: oklch(0.99 0.005 95);
-  --secondary: oklch(0.95 0.005 95);
-  --secondary-foreground: oklch(0.2 0.01 270);
-  --muted: oklch(0.95 0.005 95);
-  --muted-foreground: oklch(0.45 0.012 265);
-  --accent: oklch(0.5 0.12 60);
+  --secondary: oklch(0.93 0.008 95);
+  --secondary-foreground: oklch(0.18 0.012 270);
+  --muted: oklch(0.93 0.008 95);
+  --muted-foreground: oklch(0.38 0.015 265);
+  --accent: oklch(0.52 0.15 62);
   --accent-foreground: oklch(0.99 0.005 95);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.2 0.01 270 / 12%);
-  --input: oklch(0.2 0.01 270 / 16%);
-  --ring: oklch(0.5 0.12 60);
+  --border: oklch(0.2 0.012 270 / 22%);
+  --input: oklch(0.2 0.012 270 / 28%);
+  --ring: oklch(0.52 0.15 62);
 }
 
 .dark {
   color-scheme: dark;
   /* Deep charcoal, near-black */
-  --background: oklch(0.15 0.006 270);
-  --foreground: oklch(0.955 0.008 95);
+  --background: oklch(0.145 0.007 270);
+  --foreground: oklch(0.96 0.008 95);
   /* Slightly lifted surface for cards */
-  --card: oklch(0.185 0.007 270);
-  --card-foreground: oklch(0.955 0.008 95);
-  --popover: oklch(0.185 0.007 270);
-  --popover-foreground: oklch(0.955 0.008 95);
-  /* Amber accent — restrained, warm, physics-notebook feel */
-  --primary: oklch(0.8 0.125 82);
+  --card: oklch(0.205 0.009 270);
+  --card-foreground: oklch(0.96 0.008 95);
+  --popover: oklch(0.205 0.009 270);
+  --popover-foreground: oklch(0.96 0.008 95);
+  /* Amber accent — vivid, warm, physics-notebook feel */
+  --primary: oklch(0.84 0.155 82);
   --primary-foreground: oklch(0.17 0.02 80);
-  --secondary: oklch(0.235 0.008 270);
-  --secondary-foreground: oklch(0.955 0.008 95);
-  --muted: oklch(0.235 0.008 270);
-  --muted-foreground: oklch(0.66 0.012 265);
-  --accent: oklch(0.8 0.125 82);
+  --secondary: oklch(0.26 0.01 270);
+  --secondary-foreground: oklch(0.96 0.008 95);
+  --muted: oklch(0.26 0.01 270);
+  --muted-foreground: oklch(0.74 0.014 265);
+  --accent: oklch(0.84 0.155 82);
   --accent-foreground: oklch(0.17 0.02 80);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.8 0.125 82);
+  --border: oklch(1 0 0 / 20%);
+  --input: oklch(1 0 0 / 26%);
+  --ring: oklch(0.84 0.155 82);
 }
 
 @layer base {
