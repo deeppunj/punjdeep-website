@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ChatWidget } from "@/components/chat-widget";
 import { SiteHeader } from "@/components/site-header";
 import { PROJECTS } from "@/lib/projects";
 
@@ -330,6 +331,7 @@ function Index() {
           © 2026 Deep Punj — Physics-Informed Data Scientist & AI Specialist
         </p>
       </footer>
+      <ChatWidget />
     </div>
   );
 }
