@@ -48,7 +48,7 @@ export function SiteHeader() {
       </a>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
         <Link to="/" className="font-mono text-sm font-medium tracking-tight" aria-label="Deep Punj — home">
-          deep<span className="text-primary">.</span>punj
+          Deep Punj
         </Link>
         <nav aria-label="Main" className="flex items-center gap-2 sm:gap-6">
           <ul className="hidden items-center gap-6 text-sm text-muted-foreground sm:flex">
