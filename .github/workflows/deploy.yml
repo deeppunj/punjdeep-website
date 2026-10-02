@@ -33,12 +33,6 @@ jobs:
       
       - name: Build static site 
         run: npm run build
-      - name: Prepare build output 
-        run: | 
-          if [ -d "./.output/public" ]; then 
-            mkdir -p ./dist 
-            cp -r ./.output/public/* ./dist/ 
-          fi
         
       - name: Upload artifact 
         uses: actions/upload-pages-artifact@v3 
