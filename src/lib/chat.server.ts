@@ -88,7 +88,8 @@ export async function handleChat(request: Request): Promise<Response> {
   const { result, response } = createResponsesCall(
     request,
     { baseURL: GATEWAY_URL, apiKey: process.env['LOVABLE_API_KEY']!, model: MODEL },
-    [{ role: "system", content: SYSTEM_PROMPT }, ...(await convertToModelMessages(messages))],
+    await convertToModelMessages(messages),
+    SYSTEM_PROMPT,
   );
 
   if (logged) {
