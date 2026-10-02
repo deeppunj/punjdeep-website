@@ -126,7 +126,7 @@ const THEME_SCRIPT = `try{var t=localStorage.getItem('theme');if(t!=="light"){do
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" translate="no" suppressHydrationWarning>
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />

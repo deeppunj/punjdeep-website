@@ -31,7 +31,10 @@ export function ThemeToggle() {
       aria-pressed={!dark}
       className="grid size-11 shrink-0 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
     >
-      {dark ? <Sun className="size-4" aria-hidden /> : <Moon className="size-4" aria-hidden />}
+      <span className="relative grid size-4 place-items-center" aria-hidden>
+        <Sun className={`size-4 ${dark ? "" : "hidden"}`} />
+        <Moon className={`size-4 ${dark ? "hidden" : ""}`} />
+      </span>
     </button>
   );
 }
@@ -76,7 +79,10 @@ export function SiteHeader() {
             aria-controls="mobile-nav"
             onClick={() => setOpen((o) => !o)}
           >
-            {open ? <X className="size-4" aria-hidden /> : <Menu className="size-4" aria-hidden />}
+            <span className="grid size-4 place-items-center" aria-hidden>
+              <X className={`size-4 ${open ? "" : "hidden"}`} />
+              <Menu className={`size-4 ${open ? "hidden" : ""}`} />
+            </span>
           </button>
         </nav>
       </div>
