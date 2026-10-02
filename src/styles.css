@@ -46,6 +46,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-glow: var(--glow);
+  --color-highlight: var(--highlight);
 }
 
 :root {
@@ -70,6 +72,12 @@
   --border: oklch(0.2 0.012 270 / 22%);
   --input: oklch(0.2 0.012 270 / 28%);
   --ring: oklch(0.52 0.15 62);
+  --glow: oklch(0.58 0.17 62 / 16%);
+  --highlight: oklch(0.67 0.13 80 / 14%);
+  --surface-gradient: linear-gradient(145deg, color-mix(in oklab, var(--card) 96%, var(--primary) 4%), var(--card));
+  --hero-gradient: radial-gradient(circle at 72% 28%, var(--glow), transparent 34%), linear-gradient(135deg, transparent 38%, var(--highlight));
+  --card-shadow: 0 18px 55px -34px color-mix(in oklab, var(--foreground) 30%, transparent);
+  --card-shadow-hover: 0 24px 70px -32px color-mix(in oklab, var(--primary) 38%, transparent);
 }
 
 .dark {
@@ -96,6 +104,12 @@
   --border: oklch(1 0 0 / 20%);
   --input: oklch(1 0 0 / 26%);
   --ring: oklch(0.84 0.155 82);
+  --glow: oklch(0.79 0.16 82 / 15%);
+  --highlight: oklch(0.72 0.12 55 / 10%);
+  --surface-gradient: linear-gradient(145deg, color-mix(in oklab, var(--card) 93%, var(--primary) 7%), var(--card) 42%, color-mix(in oklab, var(--card) 96%, var(--foreground) 4%));
+  --hero-gradient: radial-gradient(circle at 72% 28%, var(--glow), transparent 34%), linear-gradient(135deg, transparent 38%, var(--highlight));
+  --card-shadow: 0 22px 65px -38px color-mix(in oklab, var(--primary) 28%, transparent);
+  --card-shadow-hover: 0 26px 75px -34px color-mix(in oklab, var(--primary) 50%, transparent);
 }
 
 @layer base {
@@ -107,6 +121,75 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .hero-surface {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero-surface::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    content: "";
+    background: var(--hero-gradient);
+    pointer-events: none;
+  }
+
+  .hero-surface::after {
+    position: absolute;
+    inset: 12% 2% auto auto;
+    z-index: -1;
+    width: min(34rem, 58vw);
+    aspect-ratio: 1;
+    content: "";
+    opacity: 0.34;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(circle, black, transparent 72%);
+    pointer-events: none;
+  }
+
+  .project-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-gradient);
+    box-shadow: var(--card-shadow);
+  }
+
+  .project-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    content: "";
+    background: linear-gradient(90deg, var(--primary), color-mix(in oklab, var(--primary) 18%, transparent));
+  }
+
+  .project-card::after {
+    position: absolute;
+    right: -5rem;
+    bottom: -6rem;
+    width: 13rem;
+    aspect-ratio: 1;
+    content: "";
+    border-radius: 999px;
+    background: var(--glow);
+    filter: blur(42px);
+    pointer-events: none;
+  }
+
+  .project-card:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .accent-text {
+    color: var(--primary);
+    background: linear-gradient(90deg, var(--primary), color-mix(in oklab, var(--primary) 72%, var(--foreground)));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
