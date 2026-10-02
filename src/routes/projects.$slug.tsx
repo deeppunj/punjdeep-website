@@ -47,7 +47,7 @@ function ProjectNotFound() {
 function ProjectPage() {
   const { project: p } = Route.useLoaderData();
   const idx = PROJECTS.findIndex((x) => x.slug === p.slug);
-  const next = PROJECTS[(idx + 1) % PROJECTS.length];
+  const next = PROJECTS[(idx + 1) % PROJECTS.length]!;
 
   return (
     <div className="min-h-screen font-display antialiased">
