@@ -331,6 +331,7 @@ function Index() {
           © 2026 Deep Punj — Physics-Informed Data Scientist & AI Specialist
         </p>
       </footer>
+      <ChatWidget />
     </div>
   );
 }
