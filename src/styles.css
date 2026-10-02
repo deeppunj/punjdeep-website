@@ -13,7 +13,7 @@
  * The :root block defines the actual color values using oklch.
  * All colors MUST use oklch format.
  *
- * This portfolio is dark-only: :root carries the dark palette directly.
+ * :root = light theme, .dark = dark theme (default). Toggled via class on <html>.
  */
 
 @theme inline {
@@ -50,6 +50,30 @@
 
 :root {
   --radius: 0.5rem;
+  color-scheme: light;
+  --background: oklch(0.985 0.004 95);
+  --foreground: oklch(0.2 0.01 270);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.01 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.01 270);
+  --primary: oklch(0.5 0.12 60);
+  --primary-foreground: oklch(0.99 0.005 95);
+  --secondary: oklch(0.95 0.005 95);
+  --secondary-foreground: oklch(0.2 0.01 270);
+  --muted: oklch(0.95 0.005 95);
+  --muted-foreground: oklch(0.45 0.012 265);
+  --accent: oklch(0.5 0.12 60);
+  --accent-foreground: oklch(0.99 0.005 95);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.2 0.01 270 / 12%);
+  --input: oklch(0.2 0.01 270 / 16%);
+  --ring: oklch(0.5 0.12 60);
+}
+
+.dark {
+  color-scheme: dark;
   /* Deep charcoal, near-black */
   --background: oklch(0.15 0.006 270);
   --foreground: oklch(0.955 0.008 95);
@@ -83,5 +107,14 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-display);
+  }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   }
 }
