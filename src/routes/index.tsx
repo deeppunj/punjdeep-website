@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ChatWidget } from "@/components/chat-widget";
 import { SiteHeader } from "@/components/site-header";
 import { PROJECTS } from "@/lib/projects";
 
