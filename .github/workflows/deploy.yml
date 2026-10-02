@@ -33,13 +33,17 @@ jobs:
       
       - name: Build static site 
         run: npm run build
-        env:
-          NITRO_PRESET: static
+      - name: Prepare build output 
+        run: | 
+          if [ -d "./.output/public" ]; then 
+            mkdir -p ./dist 
+            cp -r ./.output/public/\* ./dist/ 
+          fi
         
       - name: Upload artifact 
         uses: actions/upload-pages-artifact@v3 
         with: 
-          path: './.output/public' 
+          path: './dist' 
           
       - name: Deploy to GitHub Pages 
         id: deployment 
