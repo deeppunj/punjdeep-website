@@ -124,8 +124,19 @@ function Index() {
         </ul>
         <div className="mt-9 flex flex-wrap items-center gap-3">
           <a
+            href="/deep-punj-resume.pdf"
+            download="Deep_Punj_Resume.pdf"
+            className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_10px_32px_-14px_var(--primary)] transition-opacity hover:opacity-85"
+            aria-label="Download résumé (PDF)"
+          >
+            <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5">
+              <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M5 21h14" />
+            </svg>
+            Download résumé
+          </a>
+          <a
             href="#work"
-            className="inline-flex min-h-12 items-center rounded-full bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_10px_32px_-14px_var(--primary)] transition-opacity hover:opacity-85"
+            className="inline-flex min-h-12 items-center rounded-full border-2 border-border bg-background/60 px-6 text-base font-semibold backdrop-blur-sm transition-colors hover:border-primary hover:text-primary"
           >
             View selected work
           </a>
@@ -302,6 +313,16 @@ function Index() {
             </a>
             <a href="#" className="transition-colors hover:text-foreground">
               Scholar
+            </a>
+            <a
+              href="/deep-punj-resume.pdf"
+              download="Deep_Punj_Resume.pdf"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-primary"
+            >
+              <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4">
+                <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M5 21h14" />
+              </svg>
+              Résumé (PDF)
             </a>
           </nav>
         </div>
