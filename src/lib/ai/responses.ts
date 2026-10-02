@@ -46,7 +46,7 @@ export function createResponsesCall(
       withLovableAiGatewayRunIdHeader(
         result.toUIMessageStreamResponse({
           sendReasoning: true,
-          onError: (error) => console.error("chat stream error:", error),
+          onError: (error) => { console.error("chat stream error:", error); return ""; },
         }),
         runIdFetch,
       ),
