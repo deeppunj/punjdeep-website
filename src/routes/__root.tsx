@@ -122,11 +122,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const THEME_SCRIPT = `try{var t=localStorage.getItem('theme');if(t!=="light"){document.documentElement.classList.add("dark")}}catch(e){}`;
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body>
         {children}
