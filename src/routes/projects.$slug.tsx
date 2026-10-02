@@ -56,18 +56,18 @@ function ProjectPage() {
         <Link
           to="/"
           hash="work"
-          className="inline-flex items-center gap-2 py-2 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground"
+          className="inline-flex items-center gap-2 py-2 font-mono text-sm font-medium uppercase text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="size-4" aria-hidden /> All projects
         </Link>
 
-        <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-primary">
+        <p className="mt-8 font-mono text-sm font-semibold uppercase text-primary">
           {p.id} · {p.tag}
         </p>
         <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-tight text-balance sm:text-5xl">
           {p.title}
         </h1>
-        <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-muted-foreground">{p.description}</p>
+        <p className="mt-5 max-w-[60ch] text-xl leading-relaxed text-foreground/80">{p.description}</p>
 
         <div className="mt-8 flex flex-wrap gap-2">
           <a href={p.links.demo} className="inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground hover:opacity-85">
@@ -81,7 +81,7 @@ function ProjectPage() {
           </a>
         </div>
 
-        <dl className="mt-12 grid grid-cols-2 gap-6 border-y border-border py-6 sm:grid-cols-4">
+        <dl className="project-card mt-12 grid grid-cols-2 gap-6 rounded-xl border border-border p-6 sm:grid-cols-4">
           {[
             ["Year", p.year],
             ["Role", p.role],
@@ -89,8 +89,8 @@ function ProjectPage() {
             ["Impact", p.metrics[1]],
           ].map(([k, v]) => (
             <div key={k} className="min-w-0">
-              <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{k}</dt>
-              <dd className="mt-1 font-medium">{v}</dd>
+              <dt className="relative z-10 font-mono text-xs font-medium uppercase text-primary">{k}</dt>
+              <dd className="relative z-10 mt-2 text-base font-semibold">{v}</dd>
             </div>
           ))}
         </dl>
@@ -104,11 +104,11 @@ function ProjectPage() {
           <h2 id="approach" className="text-2xl font-semibold tracking-tight">Approach</h2>
           <ol className="mt-4 space-y-3">
             {p.approach.map((step, i) => (
-              <li key={step} className="flex gap-4 rounded-xl border border-border bg-card p-4">
-                <span className="font-mono text-xs text-primary" aria-hidden>
+              <li key={step} className="project-card flex gap-4 rounded-xl border border-border p-5 text-base">
+                <span className="relative z-10 font-mono text-sm font-semibold text-primary" aria-hidden>
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="leading-relaxed">{step}</span>
+                <span className="relative z-10 leading-relaxed">{step}</span>
               </li>
             ))}
           </ol>
@@ -127,7 +127,7 @@ function ProjectPage() {
           <h2 id="stack" className="text-2xl font-semibold tracking-tight">Tech stack</h2>
           <ul className="mt-4 flex flex-wrap gap-2">
             {p.stack.map((s) => (
-              <li key={s} className="rounded-full border border-border px-3 py-1 font-mono text-xs">
+              <li key={s} className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-sm font-medium">
                 {s}
               </li>
             ))}
@@ -135,7 +135,7 @@ function ProjectPage() {
         </section>
 
         <nav aria-label="Next project" className="mt-16 border-t border-border pt-8">
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">Next project</p>
+          <p className="font-mono text-sm font-medium uppercase text-muted-foreground">Next project</p>
           <Link
             to="/projects/$slug"
             params={{ slug: next.slug }}
