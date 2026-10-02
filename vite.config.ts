@@ -12,4 +12,13 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: { 
+    build: { 
+      target: "esnext", 
+    }, 
+    optimizeDeps: { 
+      exclude: ["shiki", "vscode-oniguruma"], 
+    }, 
+  },
 });
+
