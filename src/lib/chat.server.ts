@@ -52,6 +52,7 @@ const bodySchema = z.object({
 });
 
 export async function handleChat(request: Request): Promise<Response> {
+  console.log("[chat] handler entered");
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     request.headers.get("x-real-ip") ||
@@ -66,6 +67,8 @@ export async function handleChat(request: Request): Promise<Response> {
   } catch {
     return Response.json({ error: "Invalid request." }, { status: 400 });
   }
+  console.log("[chat] request parsed:", parsed.messages.length, "messages");
+
 
   const messages = parsed.messages as unknown as UIMessage[];
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
