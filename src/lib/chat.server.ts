@@ -103,6 +103,7 @@ export async function handleChat(request: Request): Promise<Response> {
     })();
   }
 
+  console.log("[chat] responses call created");
   return response();
 }
 
