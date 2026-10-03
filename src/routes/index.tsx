@@ -31,37 +31,39 @@ export const Route = createFileRoute("/")({
 
 const SKILLS: { category: string; items: { name: string; level: string }[] }[] = [
   {
-    category: "Languages & Data",
+    category: "Skill category 01",
     items: [
-      { name: "Python", level: "Expert" },
-      { name: "SQL", level: "Advanced" },
-      { name: "NumPy / Pandas", level: "Expert" },
-      { name: "Polars", level: "Advanced" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
     ],
   },
   {
-    category: "Deep Learning",
+    category: "Skill category 02",
     items: [
-      { name: "PyTorch", level: "Expert" },
-      { name: "JAX", level: "Advanced" },
-      { name: "scikit-learn", level: "Expert" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
     ],
   },
   {
-    category: "Interfaces & Apps",
+    category: "Skill category 03",
     items: [
-      { name: "Streamlit", level: "Expert" },
-      { name: "FastAPI", level: "Advanced" },
-      { name: "Plotly", level: "Advanced" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
     ],
   },
   {
-    category: "MLOps & Infrastructure",
+    category: "Skill category 04",
     items: [
-      { name: "MLOps", level: "Advanced" },
-      { name: "Docker", level: "Advanced" },
-      { name: "MLflow", level: "Advanced" },
-      { name: "GitHub Actions", level: "Proficient" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
+      { name: "Skill name", level: "Level" },
     ],
   },
 ];
@@ -69,18 +71,18 @@ const SKILLS: { category: string; items: { name: string; level: string }[] }[] =
 const PHASES = [
   {
     label: "Phase 01",
-    title: "Physics",
-    body: "Governing equations, conservation laws, first principles.",
+    title: "Placeholder",
+    body: "Placeholder — a short description of this phase will go here.",
   },
   {
     label: "Phase 02",
-    title: "Modeling",
-    body: "Differentiable solvers and surrogate approximation.",
+    title: "Placeholder",
+    body: "Placeholder — a short description of this phase will go here.",
   },
   {
     label: "Phase 03",
-    title: "AI in production",
-    body: "Deployed, monitored, physics-checked systems.",
+    title: "Placeholder",
+    body: "Placeholder — a short description of this phase will go here.",
   },
 ];
 
@@ -123,7 +125,7 @@ function Index() {
         <div className="mt-9 flex flex-wrap items-center gap-3">
           <a
             href="/deep-punj-resume.pdf"
-            download="Deep_Punj_Resume.pdf"
+            download="Dummy Resume.pdf"
             className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_10px_32px_-14px_var(--primary)] transition-opacity hover:opacity-85"
             aria-label="Download résumé (PDF)"
           >
@@ -234,7 +236,7 @@ function Index() {
 
       {/* Skills */}
       <section id="skills" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8">
-        <SectionHeading index="02" title="Skill matrix" note="categorized" />
+        <SectionHeading index="02" title="Skill matrix" note="placeholder" />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SKILLS.map((group) => (
             <div key={group.category} className="project-card rounded-xl border border-border p-6">
@@ -261,14 +263,11 @@ function Index() {
 
       {/* About */}
       <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8">
-        <SectionHeading index="03" title="From physics to AI" note="the throughline" />
+        <SectionHeading index="03" title="About" note="placeholder" />
         <div className="grid gap-10 lg:grid-cols-12">
           <p className="max-w-[54ch] text-xl leading-relaxed text-foreground/90 lg:col-span-7 sm:text-2xl">
-            My training began with the hard sciences — deriving conservation laws, solving
-            governing equations, and insisting that a model must obey the physics it claims
-            to represent. That discipline became my method. I build neural systems that
-            inherit physical structure rather than learn it from scratch, so predictions
-            stay grounded, interpretable, and fast.
+            Placeholder — your about text will go here. Two or three sentences
+            describing your background and what you are looking for.
           </p>
           <div className="space-y-3 lg:col-span-5">
             {PHASES.map((phase) => (
@@ -314,7 +313,7 @@ function Index() {
             </a>
             <a
               href="/deep-punj-resume.pdf"
-              download="Deep_Punj_Resume.pdf"
+              download="Dummy Resume.pdf"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-primary"
             >
               <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4">
