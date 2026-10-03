@@ -147,21 +147,6 @@ function Index() {
             Get in touch
           </a>
         </div>
-        <dl className="mt-14 grid grid-cols-1 gap-5 border-t-2 border-border pt-7 xs:grid-cols-3 sm:flex sm:gap-12">
-          {[
-            { value: "12+", label: "Publications" },
-            { value: "40+", label: "Models shipped" },
-            { value: "7", label: "Production deployments" },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <dt className="sr-only">{stat.label}</dt>
-              <dd className="text-2xl font-semibold text-primary sm:text-3xl">{stat.value}</dd>
-              <dd className="mt-1 text-sm font-medium text-muted-foreground">
-                {stat.label}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </section>
 
       {/* Selected work */}
