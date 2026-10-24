@@ -17,3 +17,4 @@
 - [x] Questions log in database (recruiter_questions, service_role only) — verified logging + answer summaries
 - [x] Email notification request superseded: recruiter chatbot is not part of the portfolio release
 - [x] Keep the site header pinned while scrolling so navigation and Download CV stay reachable — verified in preview
+- [x] Mount ProtectedEmail in the contact section (address joined on click, mail with subject, copy button) — verified in preview
