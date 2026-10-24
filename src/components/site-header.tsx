@@ -18,9 +18,9 @@ export function SiteHeader() {
         <span className="grid size-9 place-items-center border border-primary text-sm text-primary" aria-hidden>DP</span>
         <span>Deep Punj<span className="text-muted-foreground">, PhD</span></span>
       </Link>
-      <nav aria-label="Main" className="hidden items-center gap-8 text-sm md:flex">{NAV.map(n => <Link key={n.label} to={n.to} hash={'hash' in n ? n.hash : undefined} className="py-3 transition-colors hover:text-primary">{n.label}</Link>)}</nav>
+      <nav aria-label="Main" className="hidden items-center gap-8 text-sm md:flex">{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} className="py-3 transition-colors hover:text-primary">{n.label}</Link>)}</nav>
       <Button variant="ghost" size="icon" className="md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(v => !v)}><span><Menu className={open ? "hidden" : "block"}/><X className={open ? "block" : "hidden"}/></span></Button>
     </div>
-    {open && <nav id="mobile-nav" aria-label="Mobile" className="page-width flex flex-col border-t border-border py-3 md:hidden">{NAV.map(n => <Link key={n.label} to={n.to} hash={'hash' in n ? n.hash : undefined} onClick={() => setOpen(false)} className="py-3">{n.label}</Link>)}</nav>}
+    {open && <nav id="mobile-nav" aria-label="Mobile" className="page-width flex flex-col border-t border-border py-3 md:hidden">{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} onClick={() => setOpen(false)} className="py-3">{n.label}</Link>)}</nav>}
   </header>;
 }

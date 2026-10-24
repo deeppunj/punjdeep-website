@@ -14,9 +14,9 @@ function Index() {
   const [category, setCategory] = useState<Category>('All');
   const projects = filterProjects(category);
   return <><main id="main">
-    <section className="page-width pb-12 pt-12 sm:pb-16 sm:pt-16" aria-labelledby="intro-title">
+    <section className="page-width pb-8 pt-8 sm:pb-16 sm:pt-16" aria-labelledby="intro-title">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4"><p className="section-label">Optical Engineering · Scientific Software · Applied Machine Learning</p><span className="flex items-center gap-1.5 text-xs text-muted-foreground"><MapPin className="size-3.5" aria-hidden/>Brussels, Belgium</span></div>
-      <h1 id="intro-title" className="editorial-title max-w-4xl text-5xl leading-[1.08] sm:text-6xl lg:text-7xl">From optical systems<br className="hidden sm:block"/> to <span className="italic text-primary">data-driven solutions.</span></h1>
+      <h1 id="intro-title" className="editorial-title max-w-4xl text-4xl leading-[1.08] sm:text-6xl lg:text-7xl">From optical systems<br className="hidden sm:block"/> to <span className="italic text-primary">data-driven solutions.</span></h1>
       <div className="mt-7 grid gap-6 lg:grid-cols-12 lg:items-end">
         <p className="max-w-[66ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:col-span-8">I am an optical engineer and researcher working at the intersection of experimental systems, scientific software and data analysis. My work combines optics and biomedical research with Python, SQL and machine learning to investigate complex problems and build practical tools.</p>
         <div className="flex gap-5 text-sm lg:col-span-4 lg:justify-end"><a href={SOCIAL.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-primary">GitHub<ArrowUpRight className="size-4" aria-hidden/></a><a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-primary">LinkedIn<ArrowUpRight className="size-4" aria-hidden/></a></div>

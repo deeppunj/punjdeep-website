@@ -6,6 +6,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { routeTree } from "@/routeTree.gen";
 
 function renderAt(path: string) {
+  // The production document shell renders <html>; tests mount into a div.
+  routeTree.update({ shellComponent: ({ children }) => <>{children}</> });
   const queryClient = new QueryClient();
   const router = createRouter({
     routeTree,
