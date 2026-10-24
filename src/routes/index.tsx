@@ -7,7 +7,7 @@ import { CATEGORIES, filterProjects, type Category } from '@/lib/projects';
 import { pageHead, SOCIAL } from '@/lib/site-content';
 
 export const Route = createFileRoute('/')({
-  head: () => pageHead('Deep Punj, PhD — Optical Engineering, Scientific Software & Applied ML', 'Optical engineer and researcher in Brussels connecting experimental systems, scientific software and data analysis. Explore four evidence-led project studies.', '/'),
+  head: () => pageHead('Deep Punj, PhD — Optical Engineering, Scientific Software & Applied ML', 'Optical engineer and researcher in Gent connecting experimental systems, scientific software and data analysis. Explore four evidence-led project studies.', '/'),
   component: Index,
 });
 function Index() {
@@ -15,7 +15,7 @@ function Index() {
   const projects = filterProjects(category);
   return <><main id="main">
     <section className="page-width pb-8 pt-8 sm:pb-16 sm:pt-16" aria-labelledby="intro-title">
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4"><p className="section-label">Optical Engineering · Scientific Software · Applied Machine Learning</p><span className="flex items-center gap-1.5 text-xs text-muted-foreground"><MapPin className="size-3.5" aria-hidden/>Brussels, Belgium</span></div>
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4"><p className="section-label">Optical Engineering · Scientific Software · Applied Machine Learning</p><span className="flex items-center gap-1.5 text-xs text-muted-foreground"><MapPin className="size-3.5" aria-hidden/>Gent, Belgium</span></div>
       <h1 id="intro-title" className="editorial-title max-w-4xl text-4xl leading-[1.08] sm:text-6xl lg:text-7xl">From optical systems<br className="hidden sm:block"/> to <span className="italic text-primary">data-driven solutions.</span></h1>
       <div className="mt-7 grid gap-6 lg:grid-cols-12 lg:items-end">
         <p className="max-w-[66ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:col-span-8">I am an optical engineer and researcher working at the intersection of experimental systems, scientific software and data analysis. My work combines optics and biomedical research with Python, SQL and machine learning to investigate complex problems and build practical tools.</p>
