@@ -33,7 +33,7 @@ export function SiteHeader() {
     document.addEventListener('keydown', dismiss);
     return () => document.removeEventListener('keydown', dismiss);
   }, [open]);
-  return <header className="border-b border-border bg-background">
+  return <header className="sticky top-0 z-40 border-b border-border bg-background">
     <a href="#main" onClick={() => {
       const main = document.getElementById('main');
       if (!main) return;
@@ -53,6 +53,6 @@ export function SiteHeader() {
         <Button ref={menuButton} variant="ghost" size="icon" className="min-h-11 min-w-11 md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(v => !v)}><span><Menu className={open ? "hidden" : "block"}/><X className={open ? "block" : "hidden"}/></span></Button>
       </div>
     </div>
-    <nav id="mobile-nav" aria-label="Mobile" className={`page-width flex-col border-t border-border py-3 md:hidden ${open ? 'flex' : 'hidden'}`}>{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} onClick={() => setOpen(false)} className="py-3">{n.label}</Link>)}<Button asChild className="mt-3 min-h-11 w-full"><a {...CV} onClick={() => setOpen(false)}>Download CV</a></Button></nav>
+    <nav id="mobile-nav" aria-label="Mobile" className={`page-width max-h-[calc(100vh-5rem)] flex-col overflow-y-auto border-t border-border py-3 md:hidden ${open ? 'flex' : 'hidden'}`}>{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} onClick={() => setOpen(false)} className="py-3">{n.label}</Link>)}<Button asChild className="mt-3 min-h-11 w-full"><a {...CV} onClick={() => setOpen(false)}>Download CV</a></Button></nav>
   </header>;
 }
