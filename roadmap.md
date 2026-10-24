@@ -1,5 +1,6 @@
 # Roadmap
 
+- [ ] Audit rendered portfolio and project evidence; fix recruiter clarity, figure readability and layout issues; validate in preview only
 - [x] Replace portfolio with evidence-led scientific/editorial homepage and four researched case studies
 - [x] Add working category filters, expertise/about/contact pages, canonical metadata and verified figures
 - [x] Verify navigation, filters, mobile layout, images and content rules
