@@ -18,7 +18,7 @@ export function ExpertiseSection() {
 export function AboutSection() {
   return <section id="about" className="border-y border-border bg-muted/40"><div className="page-width grid gap-8 py-16 sm:py-20 md:grid-cols-3">
     <div><p className="section-label">03 / About</p><h2 className="editorial-title mt-4 text-4xl sm:text-5xl">Physics, measurement<br className="hidden md:block"/> & data.</h2></div>
-    <div className="max-w-2xl space-y-5 text-lg leading-relaxed md:col-span-2">{ABOUT.map(p => <p key={p}>{p}</p>)}<p className="pt-2 font-mono text-xs text-primary">Brussels, Belgium</p></div>
+    <div className="max-w-2xl space-y-5 text-lg leading-relaxed md:col-span-2">{ABOUT.map(p => <p key={p}>{p}</p>)}<p className="pt-2 font-mono text-xs text-primary">Gent, Belgium</p></div>
   </div></section>;
 }
 export function ContactSection() {
