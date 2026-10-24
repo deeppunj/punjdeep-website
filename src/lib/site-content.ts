@@ -4,7 +4,7 @@ export const ABOUT = [
   'Alongside this work, I develop practical capabilities in scientific software, SQL and machine learning. I am particularly interested in problems where understanding the measurement, the underlying physics and the data all matter.',
 ];
 export const EXPERTISE = [
-  { title: 'Optical engineering & imaging', description: 'Optical systems, laser-based experiments, microscopy and scientific imaging.', projects: ['photonic-coupling-assembly-tolerance', 'laser-weld-defect-inspection'] },
+  { title: 'Optical engineering & imaging', description: 'Simulated optical coupling and assembly tolerance, complemented by thermal-image analysis of laser welds.', projects: ['photonic-coupling-assembly-tolerance', 'laser-weld-defect-inspection'] },
   { title: 'Scientific Python & software', description: 'Data-processing workflows, numerical analysis, visualisation and practical scientific tools.', projects: ['photonic-coupling-assembly-tolerance', 'laser-weld-defect-inspection', 'healthcare-risk-prioritisation'] },
   { title: 'Applied machine learning', description: 'Feature engineering, model comparison, grouped or temporal evaluation and interpretable results.', projects: ['laser-weld-defect-inspection', 'healthcare-risk-prioritisation'] },
   { title: 'Data analysis & communication', description: 'SQL, pandas, Power BI and clear communication of analytical findings.', projects: ['healthcare-risk-prioritisation', 'fda-drug-shortages-analytics'] },
