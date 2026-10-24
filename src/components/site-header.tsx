@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/hooks/use-theme";
 
 const NAV = [
   { label: "Projects", to: "/", hash: "projects" },
@@ -12,6 +13,8 @@ const NAV = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
+  const { theme, toggleTheme } = useTheme();
+  const dark = theme === "dark";
   useEffect(() => {
     if (!open) return;
     const dismiss = (event: KeyboardEvent) => {
@@ -35,7 +38,10 @@ export function SiteHeader() {
         <span className="min-w-0">Deep Punj<span className="text-muted-foreground">, PhD</span></span>
       </Link>
       <nav aria-label="Main" className="hidden items-center gap-8 text-sm md:flex">{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} className="py-3 transition-colors hover:text-primary">{n.label}</Link>)}</nav>
-      <Button ref={menuButton} variant="ghost" size="icon" className="min-h-11 min-w-11 md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(v => !v)}><span><Menu className={open ? "hidden" : "block"}/><X className={open ? "block" : "hidden"}/></span></Button>
+      <div className="flex items-center gap-1">
+        <Button variant="ghost" size="icon" className="min-h-11 min-w-11" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={toggleTheme}><span><Sun className={dark ? "block" : "hidden"}/><Moon className={dark ? "hidden" : "block"}/></span></Button>
+        <Button ref={menuButton} variant="ghost" size="icon" className="min-h-11 min-w-11 md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(v => !v)}><span><Menu className={open ? "hidden" : "block"}/><X className={open ? "block" : "hidden"}/></span></Button>
+      </div>
     </div>
     <nav id="mobile-nav" aria-label="Mobile" className={`page-width flex-col border-t border-border py-3 md:hidden ${open ? 'flex' : 'hidden'}`}>{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} onClick={() => setOpen(false)} className="py-3">{n.label}</Link>)}</nav>
   </header>;
