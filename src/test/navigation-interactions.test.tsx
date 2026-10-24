@@ -27,5 +27,19 @@ describe('Shared navigation interactions', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open menu' }));
     fireEvent.click(screen.getByRole('link', { name: 'Deep Punj — home' }));
     expect(screen.getByRole('button', { name: 'Open menu' })).toHaveAttribute('aria-expanded', 'false');
+  it('offers the CV as a download in the header', () => {
+    render(<SiteHeader />);
+    const cv = screen.getByRole('link', { name: 'Download CV' });
+    expect(cv).toHaveAttribute('href', '/deep-punj-cv.pdf');
+    expect(cv).toHaveAttribute('download', 'Deep_Punj_CV.pdf');
+    expect(cv).toHaveAttribute('target', '_blank');
+  });
+  it('offers the CV download inside the mobile menu', () => {
+    render(<SiteHeader />);
+    fireEvent.click(screen.getByRole('button', { name: 'Open menu' }));
+    const cv = screen.getAllByRole('link', { name: 'Download CV' }).find(l => l.closest('#mobile-nav'));
+    expect(cv).toBeDefined();
+    expect(cv).toHaveAttribute('href', '/deep-punj-cv.pdf');
+    expect(cv).toHaveAttribute('download', 'Deep_Punj_CV.pdf');
   });
 });
