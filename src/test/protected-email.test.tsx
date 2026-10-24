@@ -40,8 +40,8 @@ describe('ProtectedEmail', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Show and send email to Deep Punj' }));
     spy.mockRestore();
     expect(hrefs).toHaveLength(1);
-    expect(hrefs[0]).toBe('mailto:deep.punj@outlook.com?subject=Contact%20via%20punjdeep.com');
-    expect(screen.getByText('deep.punj@outlook.com')).toBeInTheDocument();
+    expect(hrefs[0]).toBe(`mailto:${ADDRESS}?subject=Contact%20via%20punjdeep.com`);
+    expect(screen.getByText(ADDRESS)).toBeInTheDocument();
   });
 
   it('copies the revealed address and resets the button after 2 seconds', async () => {
@@ -55,7 +55,7 @@ describe('ProtectedEmail', () => {
     await act(async () => {
       await Promise.resolve();
     });
-    expect(writeText).toHaveBeenCalledWith('deep.punj@outlook.com');
+    expect(writeText).toHaveBeenCalledWith(ADDRESS);
     expect(screen.getByRole('button', { name: 'Email address copied' })).toHaveTextContent('Copied');
     act(() => {
       vi.advanceTimersByTime(2000);
@@ -70,6 +70,6 @@ describe('ProtectedEmail', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Show and send email to Deep Punj' }));
     spy.mockRestore();
     expect(screen.getByRole('button', { name: 'Show and send email to Deep Punj' })).toHaveTextContent('Hire me');
-    expect(hrefs[0]).toBe('mailto:deep.punj@outlook.com?subject=Project%20enquiry');
+    expect(hrefs[0]).toBe(`mailto:${ADDRESS}?subject=Project%20enquiry`);
   });
 });
