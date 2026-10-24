@@ -1,317 +1,38 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/site-header";
-import { PROJECTS } from "@/lib/projects";
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { AboutSection, ContactSection, ExpertiseSection } from '@/components/portfolio-sections';
+import { CATEGORIES, filterProjects, type Category } from '@/lib/projects';
+import { pageHead, SOCIAL } from '@/lib/site-content';
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      {
-        title: "Deep Punj, PhD — Physics-Informed Data Scientist & AI Specialist",
-      },
-      {
-        name: "description",
-        content:
-          "Portfolio of Deep Punj, PhD — physics-informed data scientist and AI specialist. Research-driven ML: PINNs, surrogate modeling, forecasting, and MLOps.",
-      },
-      {
-        property: "og:title",
-        content: "Deep Punj, PhD — Physics-Informed Data Scientist & AI Specialist",
-      },
-      {
-        property: "og:description",
-        content:
-          "Embedding conservation laws and governing equations into neural systems — PINNs, surrogates, forecasting, and deployed MLOps.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+export const Route = createFileRoute('/')({
+  head: () => pageHead('Deep Punj, PhD — Optical Engineering, Scientific Software & Applied ML', 'Optical engineer and researcher in Brussels connecting experimental systems, scientific software and data analysis. Explore four evidence-led project studies.', '/'),
   component: Index,
 });
-
-const SKILLS: { category: string; items: { name: string; level: string }[] }[] = [
-  {
-    category: "Skill category 01",
-    items: [
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-    ],
-  },
-  {
-    category: "Skill category 02",
-    items: [
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-    ],
-  },
-  {
-    category: "Skill category 03",
-    items: [
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-    ],
-  },
-  {
-    category: "Skill category 04",
-    items: [
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-      { name: "Skill name", level: "Level" },
-    ],
-  },
-];
-
-const PHASES = [
-  {
-    label: "Phase 01",
-    title: "Placeholder",
-    body: "Placeholder — a short description of this phase will go here.",
-  },
-  {
-    label: "Phase 02",
-    title: "Placeholder",
-    body: "Placeholder — a short description of this phase will go here.",
-  },
-  {
-    label: "Phase 03",
-    title: "Placeholder",
-    body: "Placeholder — a short description of this phase will go here.",
-  },
-];
-
-function SectionHeading({ index, title, note }: { index: string; title: string; note?: string }) {
-  return (
-    <div className="mb-10 flex flex-wrap items-end justify-between gap-3 border-b-2 border-border pb-5">
-      <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>
-      <span className="font-mono text-xs font-medium uppercase text-muted-foreground">
-        {index}
-        {note ? ` — ${note}` : ""}
-      </span>
-    </div>
-  );
-}
-
 function Index() {
-  return (
-    <div className="min-h-screen font-display antialiased">
-      <SiteHeader />
-      <main id="main">
-      {/* Hero */}
-      <section aria-labelledby="hero-title" className="hero-surface mx-auto max-w-6xl overflow-hidden px-5 pb-24 pt-14 sm:px-8 sm:pt-24">
-        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-card/80 px-4 py-2 font-mono text-xs font-medium uppercase text-foreground shadow-sm backdrop-blur-sm">
-          <span className="size-2 rounded-full bg-primary shadow-[0_0_14px_var(--primary)]" />
-          PhD · Physics-Informed Data Scientist & AI Specialist
+  const [category, setCategory] = useState<Category>('All');
+  const projects = filterProjects(category);
+  return <><main id="main">
+    <section className="page-width pb-8 pt-8 sm:pb-16 sm:pt-16" aria-labelledby="intro-title">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4"><p className="section-label">Optical Engineering · Scientific Software · Applied Machine Learning</p><span className="flex items-center gap-1.5 text-xs text-muted-foreground"><MapPin className="size-3.5" aria-hidden/>Brussels, Belgium</span></div>
+      <h1 id="intro-title" className="editorial-title max-w-4xl text-4xl leading-[1.08] sm:text-6xl lg:text-7xl">From optical systems<br className="hidden sm:block"/> to <span className="italic text-primary">data-driven solutions.</span></h1>
+      <div className="mt-7 grid gap-6 lg:grid-cols-12 lg:items-end">
+        <p className="max-w-[66ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:col-span-8">I am an optical engineer and researcher working at the intersection of experimental systems, scientific software and data analysis. My work combines optics and biomedical research with Python, SQL and machine learning to investigate complex problems and build practical tools.</p>
+        <div className="flex gap-5 text-sm lg:col-span-4 lg:justify-end"><a href={SOCIAL.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-primary">GitHub<ArrowUpRight className="size-4" aria-hidden/></a><a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-primary">LinkedIn<ArrowUpRight className="size-4" aria-hidden/></a></div>
+      </div>
+      <div className="mt-7 flex flex-wrap gap-3"><Button asChild size="lg"><a href="#projects">View selected work <ArrowDown aria-hidden/></a></Button><Button asChild size="lg" variant="outline"><Link to="/contact">Contact me <ArrowUpRight aria-hidden/></Link></Button></div>
+    </section>
+    <section id="projects" className="page-width scroll-mt-8 pb-16" aria-labelledby="projects-title">
+      <div className="flex flex-wrap items-end justify-between gap-5 border-t border-border pt-8"><div><p className="section-label">01 / Selected work</p><h2 id="projects-title" className="editorial-title mt-3 text-4xl sm:text-5xl">Engineering insight. Practical tools.</h2></div><span className="font-mono text-xs text-muted-foreground" aria-live="polite">{projects.length} studies</span></div>
+      <div className="my-8 flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">{CATEGORIES.map(c => <Button key={c} variant={category === c ? 'default' : 'ghost'} aria-pressed={category === c} onClick={() => setCategory(c)} className="h-10">{c}</Button>)}</div>
+      <div className="grid gap-8 md:grid-cols-2">{projects.map((p) => <article key={p.slug} className="flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-primary/50">
+        <Link to="/projects/$slug" params={{slug:p.slug}} aria-label={`Read case study: ${p.title}`} className="block aspect-[16/10] overflow-hidden border-b border-border p-5"><img src={p.image} alt={p.alt} className="project-image" loading="lazy" width="800" height="500"/></Link>
+        <div className="flex flex-1 flex-col p-6 sm:p-7"><p className="section-label">{p.category}</p><h3 className="mt-3 text-2xl font-medium leading-tight"><Link to="/projects/$slug" params={{slug:p.slug}} className="hover:text-primary">{p.title}</Link></h3><p className="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">{p.description}</p><ul className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-xs text-muted-foreground">{p.stack.map(s => <li key={s}>{s}</li>)}</ul>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5"><Button asChild variant="link" className="h-auto p-0"><Link to="/projects/$slug" params={{slug:p.slug}}>Read case study <ArrowUpRight aria-hidden/></Link></Button><Button asChild variant="ghost" className="h-auto p-0 text-muted-foreground"><a href={p.links.github} target="_blank" rel="noopener noreferrer">View code <ArrowUpRight aria-hidden/></a></Button>{p.links.demo && <Button asChild variant="link"><a href={p.links.demo}>Live demo</a></Button>}</div>
         </div>
-        <h1 id="hero-title" className="max-w-[14ch] text-5xl font-semibold leading-[1.04] text-balance sm:text-6xl lg:text-7xl">
-          Website's work in progress
-        </h1>
-        <p className="mt-7 max-w-[52ch] text-xl leading-relaxed text-foreground/80 sm:text-2xl">
-          Optical Engineering PhD applying statistical modeling, SQL, Python, and machine learning to solve real-world analytics challenges.
-        </p>
-        <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-base font-medium text-foreground/85" aria-label="Areas of expertise">
-          {["Physics-informed ML", "Surrogate modeling", "Production AI"].map((item) => (
-            <li key={item} className="flex items-center gap-2">
-              <span className="size-1.5 rounded-full bg-primary" aria-hidden />{item}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-9 flex flex-wrap items-center gap-3">
-          <a
-            href="/deep-punj-resume.pdf"
-            download="Dummy Resume.pdf"
-            className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_10px_32px_-14px_var(--primary)] transition-opacity hover:opacity-85"
-            aria-label="Download résumé (PDF)"
-          >
-            <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5">
-              <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M5 21h14" />
-            </svg>
-            Download résumé
-          </a>
-          <a
-            href="#work"
-            className="inline-flex min-h-12 items-center rounded-full border-2 border-border bg-background/60 px-6 text-base font-semibold backdrop-blur-sm transition-colors hover:border-primary hover:text-primary"
-          >
-            View selected work
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex min-h-12 items-center rounded-full border-2 border-border bg-background/60 px-6 text-base font-semibold backdrop-blur-sm transition-colors hover:border-primary hover:text-primary"
-          >
-            Get in touch
-          </a>
-        </div>
-      </section>
-
-      {/* Selected work */}
-      <section id="work" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8">
-        <SectionHeading index="01" title="Selected work" note="03 projects" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((project) => (
-            <article
-              key={project.id}
-              className="project-card flex flex-col rounded-xl border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/60"
-            >
-              <div className="relative z-10 mb-6 flex items-center justify-between font-mono text-xs font-medium uppercase text-primary">
-                <span>{project.id} · {project.tag}</span>
-              </div>
-              <h3 className="relative z-10 text-2xl font-semibold leading-snug">
-                <Link
-                  to="/projects/$slug"
-                  params={{ slug: project.slug }}
-                  className="hover:text-primary"
-                >
-                  {project.title}
-                </Link>
-              </h3>
-              <p className="relative z-10 mt-4 flex-1 text-base leading-relaxed text-foreground/75">
-                {project.description}
-              </p>
-              <div className="relative z-10 mt-5 flex flex-wrap gap-2 text-xs font-semibold text-muted-foreground">
-                {project.metrics.map((metric) => (
-                  <span
-                    key={metric}
-                    className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1"
-                  >
-                    {metric}
-                  </span>
-                ))}
-              </div>
-              <div className="relative z-10 mt-7 flex flex-wrap gap-2">
-                <Link
-                  to="/projects/$slug"
-                  params={{ slug: project.slug }}
-                  aria-label={`Case study: ${project.title}`}
-                  className="inline-flex min-h-11 items-center rounded-full border border-primary/60 px-4 text-sm font-semibold text-primary"
-                >
-                  Details
-                </Link>
-                <a
-                  href={project.links.demo}
-                  aria-label={`Live demo: ${project.title}`}
-                  className="inline-flex min-h-11 items-center rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-85"
-                >
-                  Live demo
-                </a>
-                <a
-                  href={project.links.github}
-                  aria-label={`GitHub: ${project.title}`}
-                  className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm font-semibold transition-colors hover:border-primary/50 hover:text-primary"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={project.links.article}
-                  aria-label={`Article: ${project.title}`}
-                  className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm font-semibold transition-colors hover:border-primary/50 hover:text-primary"
-                >
-                  Article
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section id="skills" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8">
-        <SectionHeading index="02" title="Skill matrix" note="placeholder" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {SKILLS.map((group) => (
-            <div key={group.category} className="project-card rounded-xl border border-border p-6">
-              <p className="relative z-10 mb-5 font-mono text-xs font-semibold uppercase text-primary">
-                {group.category}
-              </p>
-              <ul className="relative z-10 space-y-3 text-base">
-                {group.items.map((skill) => (
-                  <li
-                    key={skill.name}
-                    className="flex items-baseline justify-between gap-3 border-b border-border/60 pb-2 last:border-b-0 last:pb-0"
-                  >
-                    <span>{skill.name}</span>
-                    <span className="font-mono text-xs font-medium uppercase text-muted-foreground">
-                      {skill.level}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8">
-        <SectionHeading index="03" title="About" note="placeholder" />
-        <div className="grid gap-10 lg:grid-cols-12">
-          <p className="max-w-[54ch] text-xl leading-relaxed text-foreground/90 lg:col-span-7 sm:text-2xl">
-            Placeholder — your about text will go here. Two or three sentences
-            describing your background and what you are looking for.
-          </p>
-          <div className="space-y-3 lg:col-span-5">
-            {PHASES.map((phase) => (
-              <div
-                key={phase.label}
-                className="project-card rounded-xl border border-border p-6"
-              >
-                <div className="relative z-10 font-mono text-xs font-medium uppercase text-primary">
-                  {phase.label}
-                </div>
-                <div className="relative z-10 mt-2 text-lg font-semibold">{phase.title}</div>
-                <div className="relative z-10 mt-2 text-base leading-relaxed text-muted-foreground">{phase.body}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      </main>
-      {/* Contact footer */}
-      <footer id="contact" className="mx-auto max-w-6xl scroll-mt-20 px-5 pb-10 sm:px-8">
-        <div className="mt-8 flex flex-col justify-between gap-8 border-t border-border py-14 md:flex-row md:items-end">
-          <div>
-            <p className="mb-3 font-mono text-sm font-medium uppercase text-primary">
-              Let's model something real
-            </p>
-            <a
-              href="mailto:deep.punj@example.com"
-              className="break-all text-2xl font-semibold tracking-tight transition-colors hover:text-primary sm:text-4xl"
-            >
-              deep.punj@example.com
-            </a>
-          </div>
-          <nav aria-label="Social" className="flex flex-wrap gap-6 font-mono text-sm font-medium uppercase text-muted-foreground">
-            <a href="#" className="transition-colors hover:text-foreground">
-              GitHub
-            </a>
-            <a href="#" className="transition-colors hover:text-foreground">
-              LinkedIn
-            </a>
-            <a href="#" className="transition-colors hover:text-foreground">
-              Scholar
-            </a>
-            <a
-              href="/deep-punj-resume.pdf"
-              download="Dummy Resume.pdf"
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-primary"
-            >
-              <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4">
-                <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M5 21h14" />
-              </svg>
-              Résumé (PDF)
-            </a>
-          </nav>
-        </div>
-        <p className="border-t border-border pt-6 pb-4 text-sm text-muted-foreground">
-          © 2026 Deep Punj — Physics-Informed Data Scientist & AI Specialist
-        </p>
-      </footer>
-    </div>
-  );
+      </article>)}</div>
+    </section>
+    <ExpertiseSection/><AboutSection/>
+  </main><ContactSection/></>;
 }

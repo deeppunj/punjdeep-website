@@ -10,3 +10,8 @@
 <!-- LOVABLE:END -->
 
 - Keep visual effects theme-safe through semantic CSS tokens so light and dark modes share the same component structure.
+
+- Keep project case-study content and optional destinations in src/lib/projects.ts; shared positioning and metadata helpers live in src/lib/site-content.ts so pages stay evidence-consistent.
+- Shared navigation is mounted once around the root Outlet; homepage content sections reuse standalone content-route sections for consistent navigation and canonical metadata.
+- Project figures use optimized Lovable Assets pointers with explicit provenance captions; optional public demos and articles render only when verified.
+- The recruiter chat is not mounted in this release; its existing service integration and stored records are preserved to avoid unrelated backend changes.
