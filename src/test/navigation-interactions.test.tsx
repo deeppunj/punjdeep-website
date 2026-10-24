@@ -31,7 +31,9 @@ describe('Shared navigation interactions', () => {
   it('offers the CV as a download in the header', () => {
 
     render(<SiteHeader />);
-    const cv = screen.getByRole('link', { name: 'Download CV' });
+    const cv = screen.getAllByRole('link', { name: 'Download CV' }).find(l => !l.closest('#mobile-nav'));
+    expect(cv).toBeDefined();
+
     expect(cv).toHaveAttribute('href', '/deep-punj-cv.pdf');
     expect(cv).toHaveAttribute('download', 'Deep_Punj_CV.pdf');
     expect(cv).toHaveAttribute('target', '_blank');
