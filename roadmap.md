@@ -6,6 +6,7 @@
 - [x] Add working category filters, expertise/about/contact pages, canonical metadata and verified figures
 - [x] Verify navigation, filters, mobile layout, images and content rules
 
+- [x] Add a persistent light/dark choice in the header (system default, remembered per visitor) — verified in preview
 - [x] Build dark minimalist portfolio (hero, 3-col projects, skill matrix, about, contact)
 - [x] Root fonts + head metadata
 - [x] Verify build and preview

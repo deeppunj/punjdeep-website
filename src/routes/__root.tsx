@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { themeInitScript } from "@/hooks/use-theme";
 
 function NotFoundComponent() {
   return (
@@ -121,6 +122,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en" translate="no" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
         {children}
