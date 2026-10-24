@@ -10,6 +10,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/site-header";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -81,15 +83,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Deep Punj, PhD" },
       {
         name: "description",
-        content: "Physics-informed data science and AI — research, models, and deployments.",
+        content: "Optical engineering, scientific software and applied machine learning — selected work by Deep Punj, PhD.",
       },
       {
         property: "og:title",
-        content: "Deep Punj, PhD — Physics-Informed Data Scientist & AI Specialist",
+        content: "Deep Punj, PhD — Optical Engineering & Scientific Software",
       },
       {
         property: "og:description",
-        content: "Physics-informed data science and AI — research, models, and deployments.",
+        content: "Optical engineering, scientific software and applied machine learning — selected work by Deep Punj, PhD.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -111,7 +113,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
@@ -122,14 +124,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-const THEME_SCRIPT = `try{var t=localStorage.getItem('theme');if(t!=="light"){document.documentElement.classList.add("dark")}}catch(e){}`;
+
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en" translate="no" suppressHydrationWarning>
       <head>
         <HeadContent />
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body>
         {children}
@@ -145,6 +146,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <SiteHeader />
       <Outlet />
     </QueryClientProvider>
   );
