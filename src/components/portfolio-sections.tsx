@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ABOUT, EXPERTISE, SOCIAL } from '@/lib/site-content';
 import { getProject } from '@/lib/projects';
+import { ProtectedEmail } from '@/components/protected-email';
 
 export function ExpertiseSection({ standalone = false }: { standalone?: boolean }) {
   const Heading = standalone ? 'h1' : 'h2';
