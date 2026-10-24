@@ -12,7 +12,7 @@
 - [x] Verify build and preview
 - [x] Strengthen hero and project visuals with theme-safe glow and gradient treatments
 - [x] Increase small copy and metadata for recruiter-friendly scanning
-- [ ] Add a verified professional CV when supplied by user; dummy PDF and download links removed
+- [x] Serve the supplied CV as /deep-punj-cv.pdf with a header Download CV button (desktop + mobile menu) — verified in preview
 - [x] Recruiter AI chat: one conversation, no persistence, floating button (AI Gateway, portfolio-grounded answers) — verified end-to-end
 - [x] Questions log in database (recruiter_questions, service_role only) — verified logging + answer summaries
 - [x] Email notification request superseded: recruiter chatbot is not part of the portfolio release
