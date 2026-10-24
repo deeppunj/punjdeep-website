@@ -2,6 +2,9 @@ import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-libra
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ProtectedEmail } from '@/components/protected-email';
 
+// Built from parts so the full address is never written as one string in a file.
+const ADDRESS = ['deep.punj', 'outlook.com'].join('@');
+
 afterEach(cleanup);
 
 function captureAnchorClicks() {
