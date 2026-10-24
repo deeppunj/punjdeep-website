@@ -16,3 +16,4 @@
 - Project figures use optimized Lovable Assets pointers with explicit provenance captions; optional public demos and articles render only when verified.
 - Case-study figures use an accessible full-size dialog with contained scrolling so detailed repository charts remain inspectable on phones without page overflow.
 - The recruiter chat is not mounted in this release; its existing service integration and stored records are preserved to avoid unrelated backend changes.
+- Retained assistant grounding is generated from the public project and site-content inventory to prevent obsolete credentials, destinations or résumé promises from diverging from the visible portfolio.
