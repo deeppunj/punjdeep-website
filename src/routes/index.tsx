@@ -7,7 +7,8 @@ import { CATEGORIES, filterProjects, type Category } from '@/lib/projects';
 import { pageHead, SOCIAL } from '@/lib/site-content';
 
 export const Route = createFileRoute('/')({
-  head: () => pageHead('Deep Punj, PhD — Optical Engineering, Scientific Software & Applied ML', 'Optical engineer and researcher in Gent connecting experimental systems, scientific software and data analysis. Explore four evidence-led project studies.', '/'),
+  staticData: { sitemap: true },
+  head: () => pageHead('Deep Punj, PhD — Optical Engineer, Scientific Software & Applied ML | Gent, Belgium', 'Optical engineer and researcher in Gent connecting experimental systems, scientific software and data analysis. Explore four evidence-led project studies.', '/'),
   component: Index,
 });
 function Index() {

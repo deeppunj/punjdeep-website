@@ -86,4 +86,8 @@ export const PROJECTS: Project[] = [
   },
 ];
 export const getProject = (slug: string) => PROJECTS.find(p => p.slug === slug);
+/** Old addresses from the previous site, permanently redirected to the matching study. */
+export const LEGACY_PROJECT_SLUGS: Record<string, string> = {
+  'project-two': 'photonic-coupling-assembly-tolerance',
+};
 export const filterProjects = (category: Category) => category === 'All' ? PROJECTS : PROJECTS.filter(p => p.category === category);

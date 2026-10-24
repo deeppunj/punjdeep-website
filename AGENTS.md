@@ -23,3 +23,5 @@
 - The shared header stays pinned to the top of the viewport (below dialog overlays in stacking order), and every in-page anchor target keeps scroll margin that clears it, so navigation and the CV download remain reachable while scrolling and jumps never land under the pinned bar.
 - Email contact is rendered only by the ProtectedEmail component, which joins the address at click time and opens mailto on demand, so no served page, meta tag, sitemap or knowledge file ever contains the full address as one string.
 
+- Sitemap is router-derived (src/lib/sitemap.ts + src/routes/sitemap[.]xml.ts); every route declares staticData.sitemap, so new pages make an explicit search decision.
+- Retired project addresses map to current studies in LEGACY_PROJECT_SLUGS and redirect in beforeLoad, so old shared links keep working.
