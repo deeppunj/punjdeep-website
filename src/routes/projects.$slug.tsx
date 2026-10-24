@@ -1,150 +1,25 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
-import { SiteHeader } from "@/components/site-header";
-import { getProject, PROJECTS } from "@/lib/projects";
-
-export const Route = createFileRoute("/projects/$slug")({
-  loader: ({ params }) => {
-    const project = getProject(params.slug);
-    if (!project) throw notFound();
-    return { project };
-  },
-  head: ({ loaderData }) => {
-    if (!loaderData) {
-      return { meta: [{ title: "Project not found — Deep Punj" }, { name: "robots", content: "noindex" }] };
-    }
-    const p = loaderData.project;
-    const title = `${p.title} — Deep Punj, PhD`;
-    return {
-      meta: [
-        { title },
-        { name: "description", content: p.description },
-        { property: "og:title", content: title },
-        { property: "og:description", content: p.description },
-        { property: "og:type", content: "article" },
-        { name: "twitter:card", content: "summary" },
-      ],
-    };
-  },
-  notFoundComponent: ProjectNotFound,
+import { createFileRoute, Link, notFound } from '@tanstack/react-router';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ContactSection } from '@/components/portfolio-sections';
+import { getProject, PROJECTS } from '@/lib/projects';
+import { pageHead } from '@/lib/site-content';
+export const Route = createFileRoute('/projects/$slug')({
+  loader: ({params}) => { const project = getProject(params.slug); if (!project) throw notFound(); return {project}; },
+  head: ({loaderData}) => loaderData ? pageHead(`${loaderData.project.title} — Deep Punj, PhD`, loaderData.project.description, `/projects/${loaderData.project.slug}`, loaderData.project.image) : {meta:[{title:'Study unavailable — Deep Punj, PhD'}, {name:'description',content:'Find the selected scientific and analytical studies by Deep Punj.'},{property:'og:title',content:'Study unavailable — Deep Punj, PhD'},{property:'og:description',content:'Return to the selected project studies.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'},{name:'robots',content:'noindex'}]},
   component: ProjectPage,
+  notFoundComponent: ProjectNotFound,
 });
-
-function ProjectNotFound() {
-  return (
-    <div className="min-h-screen font-display">
-      <SiteHeader />
-      <main id="main" className="mx-auto max-w-3xl px-5 py-24 sm:px-8">
-        <h1 className="text-3xl font-semibold">Project not found</h1>
-        <Link to="/" hash="work" className="mt-6 inline-block text-primary underline underline-offset-4">
-          Back to all projects
-        </Link>
-      </main>
-    </div>
-  );
-}
-
+function ProjectNotFound() { return <main id="main" className="page-width py-24"><p className="section-label">404 / Study not found</p><h1 className="editorial-title mt-4 text-5xl">Let’s get back to the work.</h1><p className="mt-5 text-muted-foreground">This study does not exist or its address has changed.</p><Button asChild className="mt-8"><Link to="/" hash="projects">View selected work</Link></Button></main>; }
 function ProjectPage() {
-  const { project: p } = Route.useLoaderData();
-  const idx = PROJECTS.findIndex((x) => x.slug === p.slug);
-  const next = PROJECTS[(idx + 1) % PROJECTS.length]!;
-
-  return (
-    <div className="min-h-screen font-display antialiased">
-      <SiteHeader />
-      <main id="main" className="mx-auto max-w-4xl px-5 pb-20 pt-10 sm:px-8 sm:pt-16">
-        <Link
-          to="/"
-          hash="work"
-          className="inline-flex items-center gap-2 py-2 font-mono text-sm font-medium uppercase text-muted-foreground hover:text-foreground"
-        >
-          <ArrowLeft className="size-4" aria-hidden /> All projects
-        </Link>
-
-        <p className="mt-8 font-mono text-sm font-semibold uppercase text-primary">
-          {p.id} · {p.tag}
-        </p>
-        <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-tight text-balance sm:text-5xl">
-          {p.title}
-        </h1>
-        <p className="mt-5 max-w-[60ch] text-xl leading-relaxed text-foreground/80">{p.description}</p>
-
-        <div className="mt-8 flex flex-wrap gap-2">
-          <a href={p.links.demo} className="inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground hover:opacity-85">
-            Live demo
-          </a>
-          <a href={p.links.github} className="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-sm font-medium hover:border-primary/50 hover:text-primary">
-            GitHub code
-          </a>
-          <a href={p.links.article} className="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-sm font-medium hover:border-primary/50 hover:text-primary">
-            Article
-          </a>
-        </div>
-
-        <dl className="project-card mt-12 grid grid-cols-2 gap-6 rounded-xl border border-border p-6 sm:grid-cols-4">
-          {[
-            ["Year", p.year],
-            ["Role", p.role],
-            ["Key result", p.metrics[0]],
-            ["Impact", p.metrics[1]],
-          ].map(([k, v]) => (
-            <div key={k} className="min-w-0">
-              <dt className="relative z-10 font-mono text-xs font-medium uppercase text-primary">{k}</dt>
-              <dd className="relative z-10 mt-2 text-base font-semibold">{v}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <section aria-labelledby="problem" className="mt-12">
-          <h2 id="problem" className="text-2xl font-semibold tracking-tight">The problem</h2>
-          <p className="mt-3 leading-relaxed text-foreground/90">{p.problem}</p>
-        </section>
-
-        <section aria-labelledby="approach" className="mt-10">
-          <h2 id="approach" className="text-2xl font-semibold tracking-tight">Approach</h2>
-          <ol className="mt-4 space-y-3">
-            {p.approach.map((step, i) => (
-              <li key={step} className="project-card flex gap-4 rounded-xl border border-border p-5 text-base">
-                <span className="relative z-10 font-mono text-sm font-semibold text-primary" aria-hidden>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="relative z-10 leading-relaxed">{step}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section aria-labelledby="results" className="mt-10">
-          <h2 id="results" className="text-2xl font-semibold tracking-tight">Results</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed marker:text-primary">
-            {p.results.map((r) => (
-              <li key={r}>{r}</li>
-            ))}
-          </ul>
-        </section>
-
-        <section aria-labelledby="stack" className="mt-10">
-          <h2 id="stack" className="text-2xl font-semibold tracking-tight">Tech stack</h2>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {p.stack.map((s) => (
-              <li key={s} className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-sm font-medium">
-                {s}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <nav aria-label="Next project" className="mt-16 border-t border-border pt-8">
-          <p className="font-mono text-sm font-medium uppercase text-muted-foreground">Next project</p>
-          <Link
-            to="/projects/$slug"
-            params={{ slug: next.slug }}
-            className="mt-2 inline-block text-2xl font-semibold tracking-tight hover:text-primary"
-          >
-            {next.title} →
-          </Link>
-        </nav>
-      </main>
-    </div>
-  );
+  const {project:p} = Route.useLoaderData();
+  const index = PROJECTS.findIndex(x => x.slug === p.slug);
+  const next = PROJECTS[(index + 1) % PROJECTS.length];
+  return <><main id="main" className="page-width pb-16 pt-8 sm:pt-12">
+    <Link to="/" hash="projects" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"><ArrowLeft className="size-4" aria-hidden/>All selected work</Link>
+    <header className="pb-10 pt-10"><p className="section-label">{p.category} / Case study</p><h1 className="editorial-title mt-4 max-w-4xl text-5xl leading-tight sm:text-6xl">{p.title}</h1><p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground">{p.description}</p><ul className="mt-6 flex flex-wrap gap-3 font-mono text-xs text-primary">{p.stack.map(s => <li key={s}>{s}</li>)}</ul><div className="mt-7 flex gap-3"><Button asChild><a href={p.links.github} target="_blank" rel="noopener noreferrer">View repository <ArrowUpRight aria-hidden/></a></Button>{p.links.demo && <Button asChild variant="outline"><a href={p.links.demo}>Live demo</a></Button>}{p.links.article && <Button asChild variant="outline"><a href={p.links.article}>Article</a></Button>}</div></header>
+    <figure><div className="flex min-h-48 justify-center rounded-md border border-border bg-card p-4 sm:p-8"><img src={p.image} alt={p.alt} className="max-h-[620px] max-w-full object-contain" width="1080" height="700"/></div><figcaption className="mt-3 max-w-4xl text-xs leading-relaxed text-muted-foreground">{p.caption} <a href={p.links.github} className="text-primary underline underline-offset-2">Source repository</a></figcaption></figure>
+    <div className="mt-14 grid gap-10 lg:grid-cols-[220px_1fr]"><nav aria-label="Case study sections" className="hidden lg:block"><div className="sticky top-8"><p className="section-label mb-5">In this study</p><ol className="space-y-3 text-sm text-muted-foreground">{p.sections.map((s,i) => <li key={s.title}><a href={`#section-${i}`} className="hover:text-primary">{s.title}</a></li>)}</ol></div></nav><div className="max-w-3xl">{p.sections.map((s,i) => <section key={s.title} id={`section-${i}`} className="scroll-mt-8 border-t border-border pb-10 pt-7"><h2 className="text-2xl font-medium">{s.title}</h2><div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">{s.paragraphs.map(t => <p key={t}>{t}</p>)}</div></section>)}</div></div>
+    {next && <nav aria-label="Next study" className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-8"><span className="section-label">Next study</span><Link to="/projects/$slug" params={{slug:next.slug}} className="inline-flex items-center gap-3 text-xl hover:text-primary">{next.title}<ArrowUpRight className="size-5 shrink-0" aria-hidden/></Link></nav>}
+  </main><div className="border-t border-border"><ContactSection/></div></>;
 }
