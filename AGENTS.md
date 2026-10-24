@@ -20,4 +20,5 @@
 - The recruiter chat is not mounted in this release; its existing service integration and stored records are preserved to avoid unrelated backend changes.
 - Retained assistant grounding is generated from the public project and site-content inventory to prevent obsolete credentials, destinations or résumé promises from diverging from the visible portfolio.
 - The CV is a static file served from public/ and linked from the shared header on desktop and inside the mobile menu, so it stays reachable on every page without a build step.
+- The shared header stays pinned to the top of the viewport (below dialog overlays in stacking order), and every in-page anchor target keeps scroll margin that clears it, so navigation and the CV download remain reachable while scrolling and jumps never land under the pinned bar.
 

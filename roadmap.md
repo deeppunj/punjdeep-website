@@ -16,3 +16,4 @@
 - [x] Recruiter AI chat: one conversation, no persistence, floating button (AI Gateway, portfolio-grounded answers) — verified end-to-end
 - [x] Questions log in database (recruiter_questions, service_role only) — verified logging + answer summaries
 - [x] Email notification request superseded: recruiter chatbot is not part of the portfolio release
+- [x] Keep the site header pinned while scrolling so navigation and Download CV stay reachable — verified in preview
