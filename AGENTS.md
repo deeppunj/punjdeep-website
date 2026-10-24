@@ -10,6 +10,7 @@
 <!-- LOVABLE:END -->
 
 - Keep visual effects theme-safe through semantic CSS tokens so light and dark modes share the same component structure.
+- Theme choice is stored under a single localStorage key and applied pre-paint by an inline head script, so a returning visitor never sees the wrong theme flash and server markup stays hydration-safe.
 
 - Keep project case-study content and optional destinations in src/lib/projects.ts; shared positioning and metadata helpers live in src/lib/site-content.ts so pages stay evidence-consistent.
 - Shared navigation is mounted once around the root Outlet; homepage content sections reuse standalone content-route sections for consistent navigation and canonical metadata.
