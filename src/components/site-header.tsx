@@ -10,6 +10,14 @@ const NAV = [
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ] as const;
+
+const CV = {
+  href: "/deep-punj-cv.pdf",
+  download: "Deep_Punj_CV.pdf",
+  target: "_blank",
+  rel: "noopener noreferrer",
+} as const;
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -39,10 +47,12 @@ export function SiteHeader() {
       </Link>
       <nav aria-label="Main" className="hidden items-center gap-8 text-sm md:flex">{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} className="py-3 transition-colors hover:text-primary">{n.label}</Link>)}</nav>
       <div className="flex items-center gap-1">
+        <Button asChild className="mr-1 hidden min-h-11 px-5 md:inline-flex"><a {...CV}>Download CV</a></Button>
+
         <Button variant="ghost" size="icon" className="min-h-11 min-w-11" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={toggleTheme}><span><Sun className={dark ? "block" : "hidden"}/><Moon className={dark ? "hidden" : "block"}/></span></Button>
         <Button ref={menuButton} variant="ghost" size="icon" className="min-h-11 min-w-11 md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(v => !v)}><span><Menu className={open ? "hidden" : "block"}/><X className={open ? "block" : "hidden"}/></span></Button>
       </div>
     </div>
-    <nav id="mobile-nav" aria-label="Mobile" className={`page-width flex-col border-t border-border py-3 md:hidden ${open ? 'flex' : 'hidden'}`}>{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} onClick={() => setOpen(false)} className="py-3">{n.label}</Link>)}</nav>
+    <nav id="mobile-nav" aria-label="Mobile" className={`page-width flex-col border-t border-border py-3 md:hidden ${open ? 'flex' : 'hidden'}`}>{NAV.map(n => <Link key={n.label} to={n.to} {...('hash' in n ? {hash:n.hash} : {})} onClick={() => setOpen(false)} className="py-3">{n.label}</Link>)}<Button asChild className="mt-3 min-h-11 w-full"><a {...CV} onClick={() => setOpen(false)}>Download CV</a></Button></nav>
   </header>;
 }
