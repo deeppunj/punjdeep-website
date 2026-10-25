@@ -15,6 +15,7 @@ export function pageHead(title: string, description: string, path: string, image
     { title }, { name: 'description', content: description }, { property: 'og:title', content: title },
     { property: 'og:description', content: description }, { property: 'og:type', content: path.startsWith('/projects/') ? 'article' : 'website' },
     { property: 'og:url', content: `https://punjdeep.com${path}` }, { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title },
     ...(absoluteImage ? [{ property: 'og:image', content: absoluteImage }, { name: 'twitter:image', content: absoluteImage }] : []),
   ], links: [{ rel: 'canonical', href: `https://punjdeep.com${path}` }] };
 }

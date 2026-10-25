@@ -8,7 +8,7 @@ import { pageHead, SOCIAL } from '@/lib/site-content';
 
 export const Route = createFileRoute('/')({
   staticData: { sitemap: true },
-  head: () => pageHead('Deep Punj, PhD — Optical Engineer, Scientific Software & Applied ML | Gent, Belgium', 'Optical engineer and researcher in Gent connecting experimental systems, scientific software and data analysis. Explore four evidence-led project studies.', '/'),
+  head: () => pageHead('Deep Punj, PhD — Optical Engineering, Data Science & Machine Learning', 'Optical engineer and researcher in Gent connecting experimental systems, scientific software and data analysis. Explore four evidence-led project studies.', '/'),
   component: Index,
 });
 function Index() {
@@ -16,7 +16,7 @@ function Index() {
   const projects = filterProjects(category);
   return <><main id="main">
     <section className="page-width pb-8 pt-8 sm:pb-10 sm:pt-10" aria-labelledby="intro-title">
-      <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:flex sm:justify-between"><p className="section-label min-w-0">Optical Engineering · Scientific Software · Applied Machine Learning</p><span className="flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground"><MapPin className="size-3.5 shrink-0" aria-hidden/>Gent, Belgium</span></div>
+      <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:flex sm:justify-between"><p className="section-label min-w-0 text-balance"><span className="whitespace-nowrap">Optical Engineering ·</span> <span className="whitespace-nowrap">Data Science ·</span> <span className="whitespace-nowrap">Python &amp; Machine Learning</span></p><span className="flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground"><MapPin className="size-3.5 shrink-0" aria-hidden/>Gent, Belgium</span></div>
       <h1 id="intro-title" className="editorial-title max-w-4xl text-5xl leading-tight sm:text-6xl lg:text-7xl">Deep Punj, PhD</h1>
       <div className="mt-7 grid gap-6 lg:grid-cols-12 lg:items-end">
         <p className="max-w-[66ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:col-span-8">I am an optical engineer and researcher connecting physical measurement with scientific software and applied machine learning. My Python and SQL projects explore photonic coupling, interpretable weld inspection and synthetic healthcare records; a Power BI study complements this work with public-data analytics.</p>

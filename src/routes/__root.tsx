@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         property: "og:title",
-        content: "Deep Punj, PhD — Optical Engineering & Scientific Software",
+        content: "Deep Punj, PhD — Optical Engineering, Data Science & Machine Learning",
       },
       {
         property: "og:description",
@@ -87,6 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Deep Punj, PhD — Optical Engineering, Data Science & Machine Learning" },
       { name: "author", content: "Deep Punj" },
     ],
     links: [

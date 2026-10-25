@@ -18,3 +18,4 @@
 - [x] Email notification request superseded: recruiter chatbot is not part of the portfolio release
 - [x] Keep the site header pinned while scrolling so navigation and Download CV stay reachable — verified in preview
 - [x] Mount ProtectedEmail in the contact section (address joined on click, mail with subject, copy button) — verified in preview
+- [x] Replace the tagline wording with Optical Engineering · Data Science · Python & Machine Learning and update the page title/og:title/twitter:title — verified in preview

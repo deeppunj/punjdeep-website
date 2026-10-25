@@ -3,7 +3,7 @@ import { ABOUT, EXPERTISE, SOCIAL } from './site-content';
 
 /** Kept in sync with the visible portfolio; no separate invented inventory. */
 export const PORTFOLIO_KNOWLEDGE = [
-  'Deep Punj, PhD — Optical Engineering · Scientific Software · Applied Machine Learning. Gent, Belgium.',
+  'Deep Punj, PhD — Optical Engineering · Data Science · Python & Machine Learning. Gent, Belgium.',
   ...ABOUT,
   `Contact: LinkedIn ${SOCIAL.linkedin}. GitHub ${SOCIAL.github}. No verified email or CV is supplied here.`,
   'No employment timeline, publication counts, proficiency levels, production deployments or commercial outcomes are established by this portfolio.',
