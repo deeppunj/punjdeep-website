@@ -75,7 +75,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Deep Punj, PhD" },
       {
         name: "description",
-        content: "Optical engineering, scientific software and applied machine learning — selected work by Deep Punj, PhD.",
+        content: "Optical engineering, data science and machine learning: selected work by Deep Punj, PhD.",
       },
       {
         property: "og:title",
@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         property: "og:description",
-        content: "Optical engineering, scientific software and applied machine learning — selected work by Deep Punj, PhD.",
+        content: "Optical engineering, data science and machine learning: selected work by Deep Punj, PhD.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
