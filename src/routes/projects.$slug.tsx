@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactSection } from '@/components/portfolio-sections';
 import { ProjectFigure } from '@/components/project-figure';
-import { getProject, LEGACY_PROJECT_SLUGS, PROJECTS } from '@/lib/projects';
+import { CASE_STUDIES, getProject, LEGACY_PROJECT_SLUGS } from '@/lib/projects';
 import { pageHead } from '@/lib/site-content';
 export const Route = createFileRoute('/projects/$slug')({
   staticData: { sitemap: true },
@@ -12,7 +12,7 @@ export const Route = createFileRoute('/projects/$slug')({
     if (legacy) throw redirect({ to: '/projects/$slug', params: { slug: legacy }, statusCode: 301 });
   },
   loader: ({params}) => {
-    const project = getProject(params.slug); if (!project) throw notFound(); return {project};
+    const project = getProject(params.slug); if (!project || project.hasCaseStudy === false) throw notFound(); return {project};
   },
   head: ({loaderData}) => loaderData ? pageHead(`${loaderData.project.title} — Deep Punj, PhD`, loaderData.project.description, `/projects/${loaderData.project.slug}`, loaderData.project.image) : {meta:[{title:'Study unavailable — Deep Punj, PhD'}, {name:'description',content:'Find the selected scientific and analytical studies by Deep Punj.'},{property:'og:title',content:'Study unavailable — Deep Punj, PhD'},{property:'og:description',content:'Return to the selected project studies.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'},{name:'robots',content:'noindex'}]},
   component: ProjectPage,
@@ -21,8 +21,8 @@ export const Route = createFileRoute('/projects/$slug')({
 function ProjectNotFound() { return <main id="main" className="page-width py-24"><p className="section-label">404 / Study not found</p><h1 className="editorial-title mt-4 text-5xl">Let’s get back to the work.</h1><p className="mt-5 text-muted-foreground">This study does not exist or its address has changed.</p><Button asChild className="mt-8"><Link to="/" hash="projects">View selected work</Link></Button></main>; }
 function ProjectPage() {
   const {project:p} = Route.useLoaderData();
-  const index = PROJECTS.findIndex(x => x.slug === p.slug);
-  const next = PROJECTS[(index + 1) % PROJECTS.length];
+  const index = CASE_STUDIES.findIndex(x => x.slug === p.slug);
+  const next = CASE_STUDIES[(index + 1) % CASE_STUDIES.length];
   const result = p.sections.find(s => s.title === 'Results');
   const limitations = p.sections.find(s => s.title === 'Limitations');
   return <><main id="main" className="page-width pb-16 pt-8 sm:pt-12">

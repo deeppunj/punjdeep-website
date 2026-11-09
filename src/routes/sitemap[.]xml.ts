@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
 import { sitemapPathForLocation, isSitemapRouteIncluded, sitemapStaticPaths, sitemapXML, type SitemapEntry } from "@/lib/sitemap";
-import { PROJECTS } from "@/lib/projects";
+import { CASE_STUDIES } from "@/lib/projects";
 
 const BASE_URL = "https://punjdeep.com";
 
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = sitemapStaticPaths(router).map((path) => ({ path }));
         const routeId = "/projects/$slug";
         if (isSitemapRouteIncluded(router.routesById[routeId])) {
-          for (const p of PROJECTS) {
+          for (const p of CASE_STUDIES) {
             const location = router.buildLocation({ to: "/projects/$slug", params: { slug: p.slug }, search: () => ({}), hash: "" });
             const path = sitemapPathForLocation(router, location, routeId);
             if (path) entries.push({ path });

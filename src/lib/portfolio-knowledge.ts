@@ -10,7 +10,9 @@ export const PORTFOLIO_KNOWLEDGE = [
   ...EXPERTISE.map(e => `${e.title}: ${e.description}`),
   ...PROJECTS.map(p => [
     `${p.title} (${p.category}): ${p.description}`,
-    `Repository: ${p.links.github}. Portfolio: https://punjdeep.com/projects/${p.slug}. No verified hosted demo or article.`,
+    p.hasCaseStudy === false
+      ? `Repository: ${p.links.github}. Repository-only card; no case-study page, hosted demo or article.`
+      : `Repository: ${p.links.github}. Portfolio: https://punjdeep.com/projects/${p.slug}. No verified hosted demo or article.`,
     ...p.sections.map(s => `${s.title}: ${s.paragraphs.join(' ')}`),
   ].join('\n')),
 ].join('\n\n');
