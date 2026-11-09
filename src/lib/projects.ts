@@ -86,8 +86,30 @@ export const PROJECTS: Project[] = [
       { title: 'Repository and reproducibility', paragraphs: ['The public repository includes a CSV snapshot, Power BI report and model definitions, DAX measures and setup instructions. Open the PBIP in Power BI Desktop on Windows and edit the Shortages Power Query source path to your local included CSV; the README’s DataFolder parameter is not implemented in the shipped source.', 'A date table, star-schema model and drill-through detail page are documented next steps, not completed features. Source: open.fda.gov/apis/drug/drugshortages/.'] },
     ],
   },
+  {
+    slug: 'pilot-line-production-reporting', category: 'Analytics', title: 'Pilot-Line Production Reporting', hasCaseStudy: false,
+    description: 'A reporting pipeline for a simulated chip production line: data-quality rules, a PostgreSQL star schema, SQL KPIs, a Power BI report and a Streamlit dashboard.',
+    stack: ['Power BI', 'SQL', 'PostgreSQL', 'Data quality'],
+    image: 'https://raw.githubusercontent.com/deeppunj/fab-reporting-ba/main/docs/powerbi_report.png',
+    alt: 'Power BI report for the simulated pilot production line, showing KPIs and data-quality views.',
+    caption: 'Repository report figure: Deep Punj / fab-reporting-ba. Simulated production line; not real factory data.',
+    links: { github: 'https://github.com/deeppunj/fab-reporting-ba' },
+    sections: [],
+  },
+  {
+    slug: 'battery-dispatch-belgian-electricity-prices', category: 'Machine Learning', title: 'Battery Dispatch on Belgian Electricity Prices', hasCaseStudy: false,
+    description: 'A day-ahead price forecast feeding a battery schedule, tested on 2024 prices. Forecast error drops from 23.2 to 17.2 EUR/MWh against a simple baseline.',
+    stack: ['Forecasting', 'scikit-learn', 'Optimization', 'Python'],
+    image: 'https://raw.githubusercontent.com/deeppunj/battery-dispatch-be/main/results/representative_dispatch_day.png',
+    alt: 'Representative dispatch day: forecast Belgian day-ahead prices with the scheduled battery charge and discharge.',
+    caption: 'Repository result figure: Deep Punj / battery-dispatch-be. Backtest on 2024 Belgian day-ahead prices.',
+    links: { github: 'https://github.com/deeppunj/battery-dispatch-be' },
+    sections: [],
+  },
 ];
 export const getProject = (slug: string) => PROJECTS.find(p => p.slug === slug);
+/** Projects with a full case-study page; repository-only cards are excluded. */
+export const CASE_STUDIES = PROJECTS.filter(p => p.hasCaseStudy !== false);
 /** Old addresses from the previous site, permanently redirected to the matching study. */
 export const LEGACY_PROJECT_SLUGS: Record<string, string> = {
   'project-two': 'photonic-coupling-assembly-tolerance',
