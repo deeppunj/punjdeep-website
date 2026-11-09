@@ -10,11 +10,13 @@ export type Project = {
   slug: string; category: Exclude<Category, 'All'>; title: string; description: string;
   stack: string[]; image: string; alt: string; caption: string;
   links: { github: string; demo?: string; article?: string }; sections: StudySection[];
+  /** False for repository-only cards: no case-study page, no sitemap entry. */
+  hasCaseStudy?: boolean;
 };
 export const PROJECTS: Project[] = [
   {
     slug: 'laser-weld-defect-inspection', category: 'Machine Learning', title: 'Laser Weld Defect Inspection',
-    description: 'Interpretable machine learning for detecting laser-weld defects from thermal camera images, using physics-motivated features and validation grouped by weld.',
+    description: 'A Random Forest on 16,362 real thermal camera frames of laser welds catches 91% of defective frames at 5.6% false alarms, with weld-grouped validation.',
     stack: ['Python', 'Image Analysis', 'scikit-learn', 'SHAP'], image: laser.url,
     alt: 'Six thermal camera frames comparing sound and unsound phases of weld 001-020.',
     caption: 'Thermal-frame comparison from the project repository. Figure: Deep Punj; underlying dataset: Walther et al. (2025), CC BY 4.0, as attributed in the repository.',
@@ -50,7 +52,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'healthcare-risk-prioritisation', category: 'Machine Learning', title: 'Healthcare Risk Prioritisation',
-    description: 'An end-to-end PostgreSQL and machine-learning workflow for prioritising future kidney-disease diagnoses in synthetic health records.',
+    description: 'SQL cohorts and machine learning on synthetic health records: the top 10% of patients by risk score holds 49% of next year’s kidney-disease cases.',
     stack: ['PostgreSQL', 'SQL', 'scikit-learn', 'MLflow'], image: healthcare.url,
     alt: 'Study design showing two-year past-only feature windows, one-year outcomes, and earlier training versus later test snapshots.',
     caption: 'Temporal study design from Deep Punj / patient-finding-synthea. Records and evaluation are synthetic; not clinical validation.',
@@ -68,7 +70,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'fda-drug-shortages-analytics', category: 'Analytics', title: 'FDA Drug Shortages Analytics',
-    description: 'A Power BI dashboard exploring US drug-shortage listings by therapeutic category, manufacturer and duration.',
+    description: 'A Power BI dashboard of 1,141 active US drug-shortage listings (69 drugs) by category, manufacturer and how long they have been open.',
     stack: ['Power BI', 'Power Query', 'DAX', 'Data Visualisation'], image: fda.url,
     alt: 'Repository Power BI dashboard showing shortage listings by category, manufacturer, availability and posting year.',
     caption: 'Repository dashboard, October 2026 snapshot as reported by the author. Figure: Deep Punj; data: FDA/openFDA (public domain). Listings, distinct drugs and category-expanded rows are different counts. Days open depends on report refresh date.',
