@@ -1,13 +1,22 @@
 export const SOCIAL = { github: 'https://github.com/deeppunj', linkedin: 'https://www.linkedin.com/in/deeppunj/' };
 export const ABOUT = [
-  'My background is in optical engineering and biomedical research, including laser systems, microscopy, scientific instrumentation and experimental data analysis.',
-  'Alongside this work, I develop practical capabilities in scientific software, SQL and machine learning. I am particularly interested in problems where understanding the measurement, the underlying physics and the data all matter.',
+  'I am a physicist with a PhD in optics. At Ghent University I build and run laser and imaging systems, write Python programs for instrument control and image analysis, and check measurement data before anyone relies on it.',
+  'Over the past year I built GitHub projects that follow data from raw records to a tested result: SQL and Power BI reporting, machine learning on images and health records, and price forecasting. I am looking for data analyst and data scientist roles, and for optical engineering roles where the data matters.',
 ];
-export const EXPERTISE = [
-  { title: 'Optical engineering & imaging', description: 'Simulated optical coupling and assembly tolerance, complemented by thermal-image analysis of laser welds.', projects: ['photonic-coupling-assembly-tolerance', 'laser-weld-defect-inspection'] },
-  { title: 'Scientific Python & software', description: 'Data-processing workflows, numerical analysis, visualisation and practical scientific tools.', projects: ['photonic-coupling-assembly-tolerance', 'laser-weld-defect-inspection', 'healthcare-risk-prioritisation'] },
-  { title: 'Applied machine learning', description: 'Feature engineering, model comparison, grouped or temporal evaluation and interpretable results.', projects: ['laser-weld-defect-inspection', 'healthcare-risk-prioritisation'] },
-  { title: 'Data analysis & communication', description: 'SQL, pandas, Power BI and clear communication of analytical findings.', projects: ['healthcare-risk-prioritisation', 'fda-drug-shortages-analytics'] },
+export const ABOUT_SERIES = {
+  intro: 'I also write Light meets Data, a short LinkedIn series that explains data ideas through optics:',
+  posts: [
+    { label: 'Standard error', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7521910693827264514' },
+    { label: 'Fourier transforms in OCT', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7523538152041402369' },
+    { label: 'Speckle', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7525337359144484864' },
+  ],
+};
+export type ExpertiseProject = string | { slug: string; label: string };
+export const EXPERTISE: { title: string; description: string; projects: ExpertiseProject[] }[] = [
+  { title: 'Data analysis & reporting', description: 'SQL and PostgreSQL, Power BI with DAX measures, KPI definitions and data-quality checks.', projects: ['pilot-line-production-reporting', 'fda-drug-shortages-analytics'] },
+  { title: 'Machine learning & forecasting', description: 'scikit-learn models, validation split by group or by time, baselines, and results with their limits stated.', projects: ['laser-weld-defect-inspection', 'healthcare-risk-prioritisation', { slug: 'battery-dispatch-belgian-electricity-prices', label: 'Battery Dispatch' }] },
+  { title: 'Python & data pipelines', description: 'pandas, ETL from raw files to database tables, automated tests and MLflow tracking.', projects: ['healthcare-risk-prioritisation', 'laser-weld-defect-inspection'] },
+  { title: 'Optical engineering & imaging', description: 'Lasers, OCT, microscopy, instrument control in Python and photonics simulation.', projects: ['photonic-coupling-assembly-tolerance', 'laser-weld-defect-inspection'] },
 ];
 export function pageHead(title: string, description: string, path: string, image?: string) {
   const absoluteImage = image?.startsWith('https://') ? image : undefined;
