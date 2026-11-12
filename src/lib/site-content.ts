@@ -24,6 +24,43 @@ export const ABOUT_SERIES = {
     { label: 'Speckle', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7525337359144484864' },
   ],
 };
+export const EXPERIENCE: { dates: string; role: string; org: string; text?: string }[] = [
+  {
+    dates: 'Apr 2022 – present',
+    role: 'Optical Engineer / Researcher',
+    org: 'Ghent University, Faculty of Pharmaceutical Sciences',
+    text: 'Designed and built an in vivo retinal system that combines an OCT imaging system with nanosecond lasers, now in the UZ Gent Animalarium core facility. I write the Python programs for instrument control, image analysis and scheduled laser checks, co-managed the move of the whole lab, handled equipment purchases, and train PhD students and postdocs.',
+  },
+  {
+    dates: 'Nov 2021',
+    role: 'Data Mining Intern (virtual)',
+    org: 'World Development Organization',
+    text: 'Wrote Python scrapers to collect NGO funding data from several websites, then cleaned and merged it with pandas.',
+  },
+  {
+    dates: 'Jun 2019 – Apr 2022',
+    role: 'Postdoctoral Researcher, Single-Molecule Optics',
+    org: "Leiden University (Orrit's group)",
+    text: "Gold nanorod dimers: synthesis, SEM measurement and analysis, COMSOL simulations, and one- and two-photon fluorescence measurements of single molecules. Mentored a PhD student.",
+  },
+  {
+    dates: '2015 – 2019',
+    role: 'Postdoctoral Researcher',
+    org: 'IIT Madras · UC Irvine · KAUST',
+    text: 'Plasmonics-assisted ptychography for high-resolution imaging, nanofabrication with FIB and SEM, and Lumerical FDTD modelling.',
+  },
+  {
+    dates: '2012 – 2015',
+    role: 'PhD, Nano-Optics',
+    org: 'Institut Fresnel (CNRS), Aix-Marseille Université',
+    text: 'Modelled gold nanoantennas with FDTD and measured them with fluorescence correlation spectroscopy.',
+  },
+  {
+    dates: '2006 – 2011',
+    role: 'Integrated M.Sc., Photonics',
+    org: 'Cochin University of Science and Technology, India',
+  },
+];
 export type ExpertiseProject = string | { slug: string; label: string };
 export const EXPERTISE: { title: string; description: string; projects: ExpertiseProject[] }[] = [
   { title: 'Data analysis & reporting', description: 'SQL and PostgreSQL, Power BI with DAX measures, KPI definitions and data-quality checks.', projects: ['pilot-line-production-reporting', 'fda-drug-shortages-analytics'] },
