@@ -16,21 +16,20 @@ describe('Theme choice', () => {
     document.documentElement.classList.remove('dark');
   });
 
-  it('switches to dark mode and remembers the choice', () => {
+  it('opens in dark mode by default for a first-time visitor', () => {
     render(<SiteHeader />);
-    fireEvent.click(screen.getByRole('button', { name: 'Switch to dark mode' }));
     expect(document.documentElement).toHaveClass('dark');
-    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark');
     expect(screen.getByRole('button', { name: 'Switch to light mode' })).toBeInTheDocument();
   });
 
-  it('switches back to light mode and remembers that choice too', () => {
+  it('switches to light mode and back, remembering each choice', () => {
     render(<SiteHeader />);
-    fireEvent.click(screen.getByRole('button', { name: 'Switch to dark mode' }));
     fireEvent.click(screen.getByRole('button', { name: 'Switch to light mode' }));
     expect(document.documentElement).not.toHaveClass('dark');
     expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('light');
-    expect(screen.getByRole('button', { name: 'Switch to dark mode' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Switch to dark mode' }));
+    expect(document.documentElement).toHaveClass('dark');
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark');
   });
 
   it('restores a remembered dark choice on the next visit', () => {
