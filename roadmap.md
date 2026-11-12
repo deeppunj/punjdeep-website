@@ -19,3 +19,4 @@
 - [x] Keep the site header pinned while scrolling so navigation and Download CV stay reachable — verified in preview
 - [x] Mount ProtectedEmail in the contact section (address joined on click, mail with subject, copy button) — verified in preview
 - [x] Replace the tagline wording with Optical Engineering · Data Science · Python & Machine Learning and update the page title/og:title/twitter:title — verified in preview
+- [x] Redesign the home hero: two desktop columns, proof-points card (10+ years / 6 projects / 20 papers + availability line), Download CV + Email me + LinkedIn buttons with GitHub as a text link — verified in preview
