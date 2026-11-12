@@ -1,4 +1,17 @@
 export const SOCIAL = { github: 'https://github.com/deeppunj', linkedin: 'https://www.linkedin.com/in/deeppunj/' };
+export const CV_LINK = {
+  href: '/deep-punj-cv.pdf',
+  download: 'Deep_Punj_CV.pdf',
+  target: '_blank',
+  rel: 'noopener noreferrer',
+} as const;
+export const HERO_PROOF = [
+  { value: '10+ years', label: 'lasers, imaging and measurement data' },
+  { value: '6 projects', label: 'personal projects, code on GitHub' },
+  { value: '20 papers', label: 'h-index 13 on Google Scholar' },
+];
+export const HERO_AVAILABILITY =
+  'Based in Ghent · open to roles in Belgium, the Netherlands, the rest of Europe and India';
 export const ABOUT = [
   'I am a physicist with a PhD in optics. At Ghent University I build and run laser and imaging systems, write Python programs for instrument control and image analysis, and check measurement data before anyone relies on it.',
   'Over the past year I built GitHub projects that follow data from raw records to a tested result: SQL and Power BI reporting, machine learning on images and health records, and price forecasting. I am looking for data analyst and data scientist roles, and for optical engineering roles where the data matters.',
