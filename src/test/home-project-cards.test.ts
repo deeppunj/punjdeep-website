@@ -14,10 +14,8 @@ describe('homepage project selection', () => {
     expect(HOME_PROJECT_CARDS[2]?.stack).toEqual(['SQL', 'Databricks', 'Power BI']);
   });
   it('preserves future destinations without adding unavailable studies', () => {
-    expect(HOME_PROJECT_CARDS.filter(p => p.pendingStudyPath).map(p => p.pendingStudyPath)).toEqual([
-      '/projects/belgian-electricity-prices',
-    ]);
-    expect(CASE_STUDIES).toHaveLength(5);
+    expect(HOME_PROJECT_CARDS.filter(p => p.pendingStudyPath).map(p => p.pendingStudyPath)).toEqual([]);
+    expect(CASE_STUDIES).toHaveLength(6);
   });
   it('offers the supplied live dashboard only on the pilot-line card', () => {
     expect(HOME_PROJECT_CARDS.filter(p => p.links.demo).map(p => p.links.demo)).toEqual(['https://fab-reporting-ba.streamlit.app']);
