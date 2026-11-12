@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Refresh only homepage project cards: responsive grid, consistent plot frames, provenance labels, requested order and card updates; verify preview
+
 - [x] Interaction QA: browser-test navigation, filters, case studies, external destinations, keyboard and mobile; fix confirmed defects and report preview-only outcomes
 - [x] Audit rendered portfolio and project evidence; fix recruiter clarity, figure readability and layout issues; validate in preview only
 - [x] Replace portfolio with evidence-led scientific/editorial homepage and four researched case studies

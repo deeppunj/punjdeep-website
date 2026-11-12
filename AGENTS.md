@@ -25,3 +25,4 @@
 
 - Sitemap is router-derived (src/lib/sitemap.ts + src/routes/sitemap[.]xml.ts); every route declares staticData.sitemap, so new pages make an explicit search decision.
 - Retired project addresses map to current studies in LEGACY_PROJECT_SLUGS and redirect in beforeLoad, so old shared links keep working.
+- Homepage card overrides stay separate from case-study records to avoid changing existing pages; future case-study actions remain disabled until their pages exist.

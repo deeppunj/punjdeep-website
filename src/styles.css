@@ -51,6 +51,7 @@
   --color-highlight: var(--highlight);
   --color-primary-hover: var(--primary-hover);
   --color-raised: var(--raised);
+  --color-plot-surface: oklch(1 0 0);
 }
 
 :root {
