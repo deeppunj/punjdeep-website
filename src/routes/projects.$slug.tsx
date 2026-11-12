@@ -17,7 +17,7 @@ export const Route = createFileRoute('/projects/$slug')({
   loader: ({params}) => {
     const project = getProject(params.slug); if (!project || project.hasCaseStudy === false) throw notFound(); return {project};
   },
-  head: ({loaderData}) => loaderData ? pageHead(`${loaderData.project.title} — Deep Punj, PhD`, loaderData.project.description, `/projects/${loaderData.project.slug}`, loaderData.project.image) : {meta:[{title:'Study unavailable — Deep Punj, PhD'}, {name:'description',content:'Find the selected scientific and analytical studies by Deep Punj.'},{property:'og:title',content:'Study unavailable — Deep Punj, PhD'},{property:'og:description',content:'Return to the selected project studies.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'},{name:'robots',content:'noindex'}]},
+  head: ({loaderData}) => loaderData ? pageHead(loaderData.project.seoTitle ?? `${loaderData.project.title} — Deep Punj, PhD`, loaderData.project.seoDescription ?? loaderData.project.description, `/projects/${loaderData.project.slug}`, loaderData.project.image) : {meta:[{title:'Study unavailable — Deep Punj, PhD'}, {name:'description',content:'Find the selected scientific and analytical studies by Deep Punj.'},{property:'og:title',content:'Study unavailable — Deep Punj, PhD'},{property:'og:description',content:'Return to the selected project studies.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'},{name:'robots',content:'noindex'}]},
   component: ProjectPage,
   notFoundComponent: ProjectNotFound,
 });

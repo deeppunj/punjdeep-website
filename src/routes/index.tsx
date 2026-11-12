@@ -3,15 +3,15 @@ import { ArrowUpRight, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ProtectedEmail } from '@/components/protected-email';
-import { AboutSection, ContactSection, ExperienceSection, ExpertiseSection } from '@/components/portfolio-sections';
+import { AboutSection, ContactSection, ExperienceSection, ExpertiseSection, WritingSection } from '@/components/portfolio-sections';
 import { CATEGORIES, filterHomeProjectCards, type Category } from '@/lib/projects';
 import { HomeProjectCard } from '@/components/home-project-card';
-import { CV_LINK, HERO_AVAILABILITY, HERO_PROOF, pageHead, SOCIAL } from '@/lib/site-content';
+import { CV_LINK, HERO_AVAILABILITY, HERO_PROOF, pageHead, PERSON_JSON_LD, SOCIAL } from '@/lib/site-content';
 import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/')({
   staticData: { sitemap: true },
-  head: () => pageHead('Deep Punj, PhD — Optical Engineering, Data Science & Machine Learning', 'Physicist and optical engineer in Ghent building data projects end to end: SQL, Power BI, forecasting and machine learning. Explore six projects.', '/'),
+  head: () => ({ ...pageHead('Deep Punj, PhD — Optical Engineering, Data Science & Machine Learning', 'Physicist and optical engineer in Ghent building data projects end to end: SQL, Power BI, forecasting and machine learning. Explore six projects.', '/'), scripts: [{ type: 'application/ld+json', children: JSON.stringify(PERSON_JSON_LD) }] }),
   component: Index,
 });
 function Index() {
@@ -42,6 +42,6 @@ function Index() {
       <div className="mb-8 mt-2 flex flex-wrap gap-2" role="group" aria-label="Filter projects by primary discipline">{CATEGORIES.map(c => <Button key={c} variant={category === c ? 'default' : 'ghost'} aria-pressed={category === c} onClick={() => setCategory(c)} className="h-10">{c}</Button>)}</div>
       <div className="home-project-grid grid gap-8">{projects.map(p => <HomeProjectCard key={p.slug} project={p} />)}</div>
     </section>
-    <ExperienceSection/><ExpertiseSection/><AboutSection/>
+    <ExperienceSection/><WritingSection/><ExpertiseSection/><AboutSection/>
   </main><ContactSection/></>;
 }

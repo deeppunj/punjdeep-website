@@ -1,4 +1,17 @@
-export const SOCIAL = { github: 'https://github.com/deeppunj', linkedin: 'https://www.linkedin.com/in/deeppunj/' };
+export const SOCIAL = { github: 'https://github.com/deeppunj', linkedin: 'https://www.linkedin.com/in/deeppunj/', tableau: 'https://public.tableau.com/app/profile/deep.punj' };
+export const SHARE_IMAGE = 'https://punjdeep.com/og-image.png';
+export const WRITING = {
+  text: 'A LinkedIn series where I explain one data idea through optics, with the Python code on GitHub. The data in the posts is simulated, so the true answer is known.',
+  code: 'https://github.com/deeppunj/light-and-data',
+  titles: ['Averaging noisy scans: standard error', 'Fourier transform: how OCT sees depth', 'When averaging fails: speckle'],
+};
+export const PERSON_JSON_LD = {
+  '@context': 'https://schema.org', '@type': 'Person', name: 'Deep Punj', honorificSuffix: 'PhD',
+  jobTitle: 'Optical Engineer and Data Analyst', url: 'https://punjdeep.com',
+  address: { '@type': 'PostalAddress', addressLocality: 'Ghent', addressCountry: 'BE' },
+  alumniOf: [{ '@type': 'CollegeOrUniversity', name: 'Aix-Marseille Université' }, { '@type': 'CollegeOrUniversity', name: 'Cochin University of Science and Technology' }],
+  sameAs: ['https://www.linkedin.com/in/deeppunj/', 'https://github.com/deeppunj', 'https://public.tableau.com/app/profile/deep.punj'],
+};
 export const CV_LINK = {
   href: '/deep-punj-cv.pdf',
   download: 'Deep_Punj_CV.pdf',
@@ -98,13 +111,12 @@ export const EXPERTISE: { title: string; description: string; projects: Expertis
   { title: 'Python & data pipelines', description: 'pandas, ETL from raw files to database tables, automated tests and MLflow tracking.', projects: ['healthcare-risk-prioritisation', 'laser-weld-defect-inspection'] },
   { title: 'Optical engineering & imaging', description: 'Lasers, OCT, microscopy, instrument control in Python and photonics simulation.', projects: ['photonic-coupling-assembly-tolerance', 'laser-weld-defect-inspection'] },
 ];
-export function pageHead(title: string, description: string, path: string, image?: string) {
-  const absoluteImage = image?.startsWith('https://') ? image : undefined;
+export function pageHead(title: string, description: string, path: string, _image?: string) {
   return { meta: [
     { title }, { name: 'description', content: description }, { property: 'og:title', content: title },
     { property: 'og:description', content: description }, { property: 'og:type', content: path.startsWith('/projects/') ? 'article' : 'website' },
     { property: 'og:url', content: `https://punjdeep.com${path}` }, { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: title },
-    ...(absoluteImage ? [{ property: 'og:image', content: absoluteImage }, { name: 'twitter:image', content: absoluteImage }] : []),
+    { property: 'og:image', content: SHARE_IMAGE }, { property: 'og:image:width', content: '1200' }, { property: 'og:image:height', content: '630' }, { name: 'twitter:image', content: SHARE_IMAGE },
   ], links: [{ rel: 'canonical', href: `https://punjdeep.com${path}` }] };
 }
