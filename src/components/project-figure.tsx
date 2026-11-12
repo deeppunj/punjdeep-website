@@ -1,9 +1,10 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { Expand, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { Project } from '@/lib/projects';
+import type { Project, StudyFigure } from '@/lib/projects';
 
-export function ProjectFigure({ project: p }: { project: Project }) {
+export function ProjectFigure({ project, figure }: { project: Project; figure?: StudyFigure }) {
+  const p = { ...project, ...(figure ?? {}) };
   return <figure className="min-w-0">
     <Dialog.Root>
       <div className="border border-border bg-card p-3 sm:p-5">
