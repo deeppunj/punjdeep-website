@@ -117,14 +117,30 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    slug: 'battery-dispatch-belgian-electricity-prices', category: 'Machine Learning', title: 'Battery Dispatch on Belgian Electricity Prices', hasCaseStudy: false,
-    description: 'A day-ahead price forecast feeding a battery schedule, tested on 2024 prices. Forecast error drops from 23.2 to 17.2 EUR/MWh against a simple baseline.',
-    stack: ['Forecasting', 'scikit-learn', 'Optimization', 'Python'],
+    slug: 'belgian-electricity-prices', category: 'Machine Learning', title: 'Belgian Electricity Prices: Pipeline, Forecast and Battery', label: 'Personal project · public data',
+    description: 'A data pipeline and a price forecast on ten years of Belgian electricity data, used to plan when a battery should charge and discharge.',
+    stack: ['SQL', 'Databricks', 'Power BI', 'Forecasting', 'Python'],
     image: 'https://raw.githubusercontent.com/deeppunj/battery-dispatch-be/main/results/representative_dispatch_day.png',
     alt: 'Representative dispatch day: forecast Belgian day-ahead prices with the scheduled battery charge and discharge.',
-    caption: 'Repository result figure: Deep Punj / battery-dispatch-be. Backtest on 2024 Belgian day-ahead prices.',
+    caption: 'One day of the battery schedule in the 2024 test.',
     links: { github: 'https://github.com/deeppunj/battery-dispatch-be' },
-    sections: [],
+    glance: [
+      { label: 'Problem', text: 'a battery earns money by charging when electricity is cheap and selling when it is expensive, but the plan has to be made before the prices are known.' },
+      { label: 'What I built', text: 'an extract-load-transform pipeline in PostgreSQL and the same pipeline in Databricks, a Power BI report, a machine-learning price forecast and a daily battery schedule.' },
+      { label: 'Result', text: 'the forecast error drops from 23.2 to 17.2 EUR/MWh against a same-hour-yesterday forecast, tested on 2024 prices the model never saw.' },
+    ],
+    figures: [
+      { image: 'https://raw.githubusercontent.com/deeppunj/battery-dispatch-be/main/powerBi/battery_dispatch_report.png', alt: 'Power BI report on hourly Belgian electricity price and grid load, 2015 to 2024.', caption: 'Power BI report on hourly Belgian price and grid load, 2015 to 2024. Data: ENTSO-E and Elia.' },
+      { image: 'https://raw.githubusercontent.com/deeppunj/battery-dispatch-be/main/results/representative_dispatch_day.png', alt: 'Representative dispatch day: forecast Belgian day-ahead prices with the scheduled battery charge and discharge.', caption: 'One day of the battery schedule in the 2024 test.' },
+    ],
+    sections: [
+      { title: 'Problem', paragraphs: ['A battery earns money by charging when electricity is cheap and selling when it is expensive, but the plan has to be made before the prices are known.'] },
+      { title: 'Data', paragraphs: ['Belgian day-ahead hourly prices 2015 to 2024 from the ENTSO-E Transparency Platform (87,577 hourly records, no missing values or duplicate hours after cleaning) and Elia open data on the total load of the Belgian grid. About 500,000 rows in all.'] },
+      { title: 'Pipeline', paragraphs: ['Python loads the raw price and load files into PostgreSQL unchanged; SQL builds clean hourly price and load tables and a joined table; a check compares the result with the file the notebooks use (87,577 rows, same first and last hour, same price total).', 'The same steps run in Databricks SQL as bronze, silver and gold tables, and the same check passes.', 'A one-page Power BI report reads the gold table: four key figures, average price by month and by hour, grid load against price, and negative-price hours by year.'] },
+      { title: 'Forecast and battery', paragraphs: ['A gradient-boosting model forecasts tomorrow\'s prices from calendar features and past prices. Data split by time: train 2015 to 2022, validate 2023, test 2024.', 'Each day a linear optimiser plans a 2 MWh / 1 MW battery from the forecast only, and the plan is then settled at the real prices.'] },
+      { title: 'Results', paragraphs: [], items: ['Price forecast error (mean absolute error) in 2024: 17.18 EUR/MWh, against 23.19 for the same-hour-yesterday forecast.', "All 366 daily battery plans in 2024 were solved and stayed within the battery's limits.", 'The PostgreSQL and Databricks pipelines both pass the same check: 87,577 hours, same first and last hour, same price total.'] },
+      { title: 'Tools', paragraphs: ['Python (pandas, scikit-learn), PostgreSQL, SQL, Databricks SQL, Power BI (DAX), Git.'] },
+    ],
   },
 ];
 export const getProject = (slug: string) => PROJECTS.find(p => p.slug === slug);
@@ -133,6 +149,7 @@ export const CASE_STUDIES = PROJECTS.filter(p => p.hasCaseStudy !== false);
 /** Old addresses from the previous site, permanently redirected to the matching study. */
 export const LEGACY_PROJECT_SLUGS: Record<string, string> = {
   'project-two': 'photonic-coupling-assembly-tolerance',
+  'battery-dispatch-belgian-electricity-prices': 'belgian-electricity-prices',
 };
 export const filterProjects = (category: Category) => category === 'All' ? PROJECTS : PROJECTS.filter(p => p.category === category);
 
@@ -141,7 +158,7 @@ export type HomeProjectCard = Project & { provenance: string; pendingStudyPath?:
 const HOME_CARD_ORDER = [
   'pilot-line-production-reporting',
   'laser-weld-defect-inspection',
-  'battery-dispatch-belgian-electricity-prices',
+  'belgian-electricity-prices',
   'photonic-coupling-assembly-tolerance',
   'healthcare-risk-prioritisation',
   'fda-drug-shortages-analytics',
@@ -152,12 +169,11 @@ const HOME_CARD_DETAILS: Record<string, Partial<Project> & { provenance: string;
     description: 'A reporting pipeline for a simulated semiconductor pilot line (609 lots): data-quality rules, a PostgreSQL star schema, SQL KPIs, a Power BI report and a live dashboard. It finds the bottleneck (lithography, 45% of all waiting time) and an etch tool whose lots yield 75.8% against 86.1%.',
   },
   'laser-weld-defect-inspection': { provenance: 'Personal project · public lab data' },
-  'battery-dispatch-belgian-electricity-prices': {
+  'belgian-electricity-prices': {
     provenance: 'Personal project · public data',
     title: 'Belgian Electricity Prices: Pipeline, Forecast and Battery',
     description: "A Python and SQL pipeline, in PostgreSQL and in Databricks, builds 87,577 hours of Belgian prices and grid load. A forecast cuts the price error from 23.2 to 17.2 EUR/MWh against a simple baseline and plans a battery's charging, with a Power BI report on top.",
     stack: ['SQL', 'Databricks', 'Power BI'],
-    pendingStudyPath: '/projects/belgian-electricity-prices',
   },
   'photonic-coupling-assembly-tolerance': { provenance: 'Personal project · simulation' },
   'healthcare-risk-prioritisation': { provenance: 'Personal project · synthetic health records' },

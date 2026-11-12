@@ -5,7 +5,7 @@ describe('homepage project selection', () => {
   it('uses the requested project order', () => {
     expect(HOME_PROJECT_CARDS.map(p => p.slug)).toEqual([
       'pilot-line-production-reporting', 'laser-weld-defect-inspection',
-      'battery-dispatch-belgian-electricity-prices', 'photonic-coupling-assembly-tolerance',
+      'belgian-electricity-prices', 'photonic-coupling-assembly-tolerance',
       'healthcare-risk-prioritisation', 'fda-drug-shortages-analytics',
     ]);
   });

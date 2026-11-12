@@ -27,7 +27,7 @@ export const ABOUT_SERIES = {
 export type ExpertiseProject = string | { slug: string; label: string };
 export const EXPERTISE: { title: string; description: string; projects: ExpertiseProject[] }[] = [
   { title: 'Data analysis & reporting', description: 'SQL and PostgreSQL, Power BI with DAX measures, KPI definitions and data-quality checks.', projects: ['pilot-line-production-reporting', 'fda-drug-shortages-analytics'] },
-  { title: 'Machine learning & forecasting', description: 'scikit-learn models, validation split by group or by time, baselines, and results with their limits stated.', projects: ['laser-weld-defect-inspection', 'healthcare-risk-prioritisation', { slug: 'battery-dispatch-belgian-electricity-prices', label: 'Battery Dispatch' }] },
+  { title: 'Machine learning & forecasting', description: 'scikit-learn models, validation split by group or by time, baselines, and results with their limits stated.', projects: ['laser-weld-defect-inspection', 'healthcare-risk-prioritisation', { slug: 'belgian-electricity-prices', label: 'Battery Dispatch' }] },
   { title: 'Python & data pipelines', description: 'pandas, ETL from raw files to database tables, automated tests and MLflow tracking.', projects: ['healthcare-risk-prioritisation', 'laser-weld-defect-inspection'] },
   { title: 'Optical engineering & imaging', description: 'Lasers, OCT, microscopy, instrument control in Python and photonics simulation.', projects: ['photonic-coupling-assembly-tolerance', 'laser-weld-defect-inspection'] },
 ];
