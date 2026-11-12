@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { AboutSection, ContactSection } from '@/components/portfolio-sections';
+import { AboutCredentials, AboutSection, ContactSection } from '@/components/portfolio-sections';
 import { pageHead } from '@/lib/site-content';
 export const Route = createFileRoute('/about')({staticData:{sitemap:true},head:()=>pageHead('About Deep Punj, PhD — Optics, Measurement & Data','Deep Punj’s background in optical engineering and biomedical research connects experimental measurement with Python, SQL and data analysis.','/about'),component:AboutPage});
-function AboutPage(){return <><main id="main"><AboutSection standalone/></main><ContactSection/></>;}
+function AboutPage(){return <><main id="main"><AboutSection standalone/><AboutCredentials/></main><ContactSection/></>;}

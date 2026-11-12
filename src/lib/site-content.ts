@@ -61,6 +61,36 @@ export const EXPERIENCE: { dates: string; role: string; org: string; text?: stri
     org: 'Cochin University of Science and Technology, India',
   },
 ];
+export const PUBLICATIONS: {
+  intro: string;
+  items: { journal: string; role: string; href?: string }[];
+} = {
+  intro: '20 journal papers, 4 as first author; h-index 13, about 1,100 citations (Google Scholar). Selected, newest first.',
+  items: [
+    { journal: 'Advanced Science (2026)', role: 'co-author' },
+    { journal: 'Science Advances 12(39) (2026)', role: 'co-author' },
+    { journal: 'Advanced Science 13(16) (2026)', role: 'co-author', href: 'https://doi.org/10.1002/advs.202516534' },
+    { journal: 'Investigative Ophthalmology & Visual Science 67(2) (2026)', role: 'co-author' },
+    { journal: 'Journal of Nanobiotechnology 23 (2025)', role: 'co-author', href: 'https://doi.org/10.1186/s12951-025-03640-3' },
+    { journal: 'Journal of Controlled Release 365 (2024)', role: 'co-author' },
+    { journal: 'International Journal of Molecular Sciences 24(4) (2023)', role: 'second author', href: 'https://doi.org/10.3390/ijms24043147' },
+    { journal: 'Journal of Controlled Release 354 (2023)', role: 'co-author' },
+    { journal: 'ACS Photonics 2 (2015)', role: 'first author' },
+    { journal: 'Nature Nanotechnology 8 (2013)', role: 'first author', href: 'https://doi.org/10.1038/nnano.2013.98' },
+  ],
+};
+export const CERTIFICATES: { label: string; href?: string }[] = [
+  { label: 'Google Data Analytics Professional Certificate (SQL, R, Tableau, data cleaning)' },
+  { label: 'IBM: Python for Data Science, AI and Development (Coursera, 2021)' },
+  { label: 'First Order Optical System Design, University of Colorado Boulder (Coursera, 2021)' },
+  { label: 'Deloitte Australia Data Analytics Job Simulation (Forage, Oct 2026)' },
+  { label: 'Databricks course on Coursera (in progress)' },
+  { label: 'Tableau Public: 6 visualisations', href: 'https://public.tableau.com/app/profile/deep.punj' },
+];
+export const TEACHING: string[] = [
+  'Teach in the annual Specialist Microscopy course at Ghent University and train PhD students and postdocs on the lab’s setups.',
+  'Earlier: Physical Experiment 1 at Leiden University and the Europhotonics Master lab course in single-molecule spectroscopy in Marseille.',
+];
 export type ExpertiseProject = string | { slug: string; label: string };
 export const EXPERTISE: { title: string; description: string; projects: ExpertiseProject[] }[] = [
   { title: 'Data analysis & reporting', description: 'SQL and PostgreSQL, Power BI with DAX measures, KPI definitions and data-quality checks.', projects: ['pilot-line-production-reporting', 'fda-drug-shortages-analytics'] },

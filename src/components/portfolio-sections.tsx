@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ABOUT, ABOUT_SERIES, CV_LINK, EXPERIENCE, EXPERTISE, SOCIAL } from '@/lib/site-content';
+import { ABOUT, ABOUT_SERIES, CERTIFICATES, CV_LINK, EXPERIENCE, EXPERTISE, PUBLICATIONS, SOCIAL, TEACHING } from '@/lib/site-content';
 import { getProject } from '@/lib/projects';
 import { ProtectedEmail } from '@/components/protected-email';
 
@@ -42,6 +42,37 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
     <div className="min-w-0"><p className="section-label">04 / About</p><Heading className="editorial-title mt-4 text-4xl sm:text-5xl">Physics, measurement<br className="hidden md:block"/> & data.</Heading></div>
     <div className="max-w-2xl space-y-5 text-lg leading-relaxed md:col-span-2">{ABOUT.map(p => <p key={p}>{p}</p>)}<p>{ABOUT_SERIES.intro}{' '}{ABOUT_SERIES.posts.map((post, i) => <span key={post.href}><a href={post.href} target="_blank" rel="noopener noreferrer" className="text-base text-primary underline decoration-border underline-offset-4 hover:decoration-primary">{post.label}</a>{i < ABOUT_SERIES.posts.length - 1 ? ', ' : '.'}</span>)}</p><p className="pt-2 font-mono text-xs text-primary">Ghent, Belgium</p></div>
   </div></section>;
+}
+const credentialRow = 'flex flex-col gap-1 border-b border-border py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6';
+const credentialLink = 'text-primary underline decoration-border underline-offset-4 hover:decoration-primary';
+
+export function AboutCredentials() {
+  return <>
+    <section id="publications" className="page-width scroll-mt-28 section-space" aria-labelledby="publications-title">
+      <h2 id="publications-title" className="editorial-title text-3xl sm:text-4xl">Publications</h2>
+      <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{PUBLICATIONS.intro}</p>
+      <ul className="mt-6 max-w-2xl border-t border-border">
+        {PUBLICATIONS.items.map(p => <li key={p.journal} className={credentialRow}>
+          <span className="min-w-0">{p.href ? <a href={p.href} target="_blank" rel="noopener noreferrer" className={credentialLink}>{p.journal}</a> : p.journal}</span>
+          <span className="shrink-0 font-mono text-xs text-muted-foreground">{p.role}</span>
+        </li>)}
+      </ul>
+    </section>
+    <section id="certificates" className="page-width scroll-mt-28 section-space" aria-labelledby="certificates-title">
+      <h2 id="certificates-title" className="editorial-title text-3xl sm:text-4xl">Certificates and training</h2>
+      <ul className="mt-6 max-w-2xl border-t border-border">
+        {CERTIFICATES.map(c => <li key={c.label} className={credentialRow}>
+          <span className="min-w-0">{c.href ? <a href={c.href} target="_blank" rel="noopener noreferrer" className={credentialLink}>{c.label}</a> : c.label}</span>
+        </li>)}
+      </ul>
+    </section>
+    <section id="teaching" className="page-width scroll-mt-28 section-space" aria-labelledby="teaching-title">
+      <h2 id="teaching-title" className="editorial-title text-3xl sm:text-4xl">Teaching</h2>
+      <ul className="mt-6 max-w-2xl border-t border-border">
+        {TEACHING.map(t => <li key={t} className="border-b border-border py-3 leading-relaxed">{t}</li>)}
+      </ul>
+    </section>
+  </>;
 }
 export function ContactSection({ standalone = false }: { standalone?: boolean }) {
   const Heading = standalone ? 'h1' : 'h2';
