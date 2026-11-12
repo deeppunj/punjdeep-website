@@ -5,13 +5,17 @@ import fda from '@/assets/fda.webp.asset.json';
 
 export const CATEGORIES = ['All', 'Optics & Photonics', 'Machine Learning', 'Analytics'] as const;
 export type Category = typeof CATEGORIES[number];
-export type StudySection = { title: string; paragraphs: string[] };
+export type StudySection = { title: string; paragraphs: string[]; items?: string[] };
+export type StudyFigure = { image: string; alt: string; caption: string };
 export type Project = {
   slug: string; category: Exclude<Category, 'All'>; title: string; description: string;
   stack: string[]; image: string; alt: string; caption: string;
   links: { github: string; demo?: string; article?: string }; sections: StudySection[];
   /** False for repository-only cards: no case-study page, no sitemap entry. */
   hasCaseStudy?: boolean;
+  label?: string; demoLabel?: string;
+  glance?: { label: string; text: string }[];
+  figures?: StudyFigure[];
 };
 export const PROJECTS: Project[] = [
   {
@@ -87,14 +91,30 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    slug: 'pilot-line-production-reporting', category: 'Analytics', title: 'Pilot-Line Production Reporting', hasCaseStudy: false,
-    description: 'A reporting pipeline for a simulated chip production line: data-quality rules, a PostgreSQL star schema, SQL KPIs, a Power BI report and a Streamlit dashboard.',
-    stack: ['Power BI', 'SQL', 'PostgreSQL', 'Data quality'],
+    slug: 'pilot-line-production-reporting', category: 'Analytics', title: 'Pilot-Line Production Reporting', label: 'Personal project · simulated data',
+    description: 'A reporting solution for a semiconductor pilot line, built the way a reporting business analyst works: from the business problem to KPIs, a star schema, data-quality checks, SQL, a Power BI report and a live dashboard.',
+    stack: ['Power BI', 'SQL', 'PostgreSQL', 'Data quality', 'Streamlit'],
     image: 'https://raw.githubusercontent.com/deeppunj/fab-reporting-ba/main/docs/powerbi_report.png',
-    alt: 'Power BI report for the simulated pilot production line, showing KPIs and data-quality views.',
-    caption: 'Repository report figure: Deep Punj / fab-reporting-ba. Simulated production line; not real factory data.',
-    links: { github: 'https://github.com/deeppunj/fab-reporting-ba' },
-    sections: [],
+    alt: 'Power BI line overview report for the simulated pilot line.',
+    caption: 'Power BI report: line overview. Simulated data.',
+    links: { github: 'https://github.com/deeppunj/fab-reporting-ba', demo: 'https://fab-reporting-ba.streamlit.app' }, demoLabel: 'Live dashboard',
+    glance: [
+      { label: 'Problem', text: 'each team built its own Excel report from production exports, and nobody could say with confidence when lots would be ready.' },
+      { label: 'What I built', text: 'a business brief, a KPI dictionary with 12 KPIs, a Kimball star schema, Python data-quality rules, SQL KPI queries, a Power BI report with DAX measures and a Streamlit dashboard.' },
+      { label: 'Result', text: 'the analysis finds the bottleneck (lithography) and a drifting etch tool, and logs all 89 faulty source records instead of dropping them.' },
+    ],
+    figures: [
+      { image: 'https://raw.githubusercontent.com/deeppunj/fab-reporting-ba/main/docs/dashboard.png', alt: 'Streamlit dashboard for the simulated pilot line.', caption: 'Streamlit dashboard (live at fab-reporting-ba.streamlit.app). Simulated data.' },
+      { image: 'https://raw.githubusercontent.com/deeppunj/fab-reporting-ba/main/docs/powerbi_report.png', alt: 'Power BI line overview report for the simulated pilot line.', caption: 'Power BI report: line overview. Simulated data.' },
+    ],
+    sections: [
+      { title: 'Problem', paragraphs: ['Each team built its own Excel report from production (MES) exports: operations counted lots out per week, equipment tracked tool downtime and yield engineering kept its own list. Partners kept asking when their lots would be ready, and the line could not answer with confidence.'] },
+      { title: 'Data', paragraphs: ['Real production data from a fab is never public, so I simulated 609 lots with the structure of a real line: re-entrant routes, tool groups, planned and unplanned downtime, hot lots, holds and lot yield. The source export also contains deliberate data-quality problems that the pipeline has to catch.'] },
+      { title: 'What I built', paragraphs: [], items: ['Business brief with stakeholders and user stories.', 'KPI dictionary (12 KPIs with formula, owner and target).', 'Kimball star schema with the grain of each table and a source-to-target mapping.', 'Python data-quality rules.', 'SQL KPI queries with CTEs and window functions.', 'Power BI report with relationships and DAX measures, including semi-additive WIP and time intelligence.', 'Streamlit dashboard.', 'Test plan that reconciles the dashboard with the SQL.'] },
+      { title: 'What the analysis found', paragraphs: [], items: ['Lithography is the bottleneck: it causes 45% of all lot waiting time, at 75% utilization (the next highest tool group is at 51%).', 'Lots etched on ETCH-03 at step Etch 04 between 6 Jul and 2 Aug yielded 75.8%, against 86.1% for all other lots, while the other three etch tools stayed normal.', 'On-time delivery is 72.9% against an 85% target, with an average X-factor of 3.9: lots spend most of their time waiting, not being processed.', 'The source export had 89 bad rows (duplicates, unknown tools, impossible timestamps). All are logged on the dashboard.'] },
+      { title: 'Recommendations', paragraphs: [], items: ['Protect lithography capacity first (maintenance outside peak arrival days, priority staffing).', 'Review ETCH-03 at Etch 04 and add a weekly per-tool yield check at that step.', 'Fix missing tool IDs and timestamp errors in the export at the source.'] },
+      { title: 'Tools', paragraphs: ['Python (pandas, NumPy), PostgreSQL, SQL, Power BI (DAX), Streamlit, GitHub.'] },
+    ],
   },
   {
     slug: 'battery-dispatch-belgian-electricity-prices', category: 'Machine Learning', title: 'Battery Dispatch on Belgian Electricity Prices', hasCaseStudy: false,
@@ -130,8 +150,6 @@ const HOME_CARD_DETAILS: Record<string, Partial<Project> & { provenance: string;
   'pilot-line-production-reporting': {
     provenance: 'Personal project · simulated data',
     description: 'A reporting pipeline for a simulated semiconductor pilot line (609 lots): data-quality rules, a PostgreSQL star schema, SQL KPIs, a Power BI report and a live dashboard. It finds the bottleneck (lithography, 45% of all waiting time) and an etch tool whose lots yield 75.8% against 86.1%.',
-    links: { github: 'https://github.com/deeppunj/fab-reporting-ba', demo: 'https://fab-reporting-ba.streamlit.app' },
-    pendingStudyPath: '/projects/pilot-line-production-reporting',
   },
   'laser-weld-defect-inspection': { provenance: 'Personal project · public lab data' },
   'battery-dispatch-belgian-electricity-prices': {
