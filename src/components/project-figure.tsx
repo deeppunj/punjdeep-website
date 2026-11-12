@@ -7,11 +7,11 @@ export function ProjectFigure({ project, figure }: { project: Project; figure?: 
   const p = { ...project, ...(figure ?? {}) };
   return <figure className="min-w-0">
     <Dialog.Root>
-      <div className="border border-border bg-card p-3 sm:p-5">
-        <img src={p.image} alt={p.alt} className="mx-auto h-auto max-h-[620px] max-w-full object-contain" />
+      <div className="overflow-hidden rounded-md border border-border bg-plot-surface p-3 sm:p-4">
+        <img src={p.image} alt={p.alt} className="mx-auto h-auto w-full object-contain" />
       </div>
       <div className="mt-3 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-        <figcaption className="min-w-0 text-sm leading-relaxed text-muted-foreground">{p.caption} <a href={p.links.github} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Source repository</a></figcaption>
+        <figcaption className="min-w-0 font-mono text-xs leading-relaxed text-muted-foreground">{p.caption} <a href={p.links.github} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Source repository</a></figcaption>
         <Dialog.Trigger asChild><Button variant="outline" size="icon" aria-label="Enlarge figure" title="Enlarge figure" className="shrink-0"><Expand aria-hidden /></Button></Dialog.Trigger>
       </div>
       <Dialog.Portal>
