@@ -33,7 +33,7 @@ export function SiteHeader() {
     document.addEventListener('keydown', dismiss);
     return () => document.removeEventListener('keydown', dismiss);
   }, [open]);
-  return <header className="sticky top-0 z-40 border-b border-border bg-background">
+  return <header className="sticky top-0 z-40 border-b border-border bg-raised">
     <a href="#main" onClick={() => {
       const main = document.getElementById('main');
       if (!main) return;

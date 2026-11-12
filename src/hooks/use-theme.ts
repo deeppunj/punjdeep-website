@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 export const THEME_STORAGE_KEY = "dp-theme";
 export type Theme = "light" | "dark";
 
-/** Pre-paint theme decision: stored choice wins, otherwise the OS preference. */
-export const themeInitScript = `(function(){try{var k='${THEME_STORAGE_KEY}';var s=localStorage.getItem(k);var d=s==='dark'||(s!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);}catch(e){}})();`;
+/** Pre-paint theme decision: stored choice wins, otherwise dark (site default). */
+export const themeInitScript = `(function(){try{var k='${THEME_STORAGE_KEY}';var s=localStorage.getItem(k);var d=s!=='light';document.documentElement.classList.toggle('dark',d);}catch(e){}})();`;
 
 function readStoredTheme(): Theme | null {
   try {
@@ -17,9 +17,9 @@ function readStoredTheme(): Theme | null {
 
 function systemTheme(): Theme {
   try {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return "dark";
   } catch {
-    return "light";
+    return "dark";
   }
 }
 
