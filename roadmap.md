@@ -24,3 +24,4 @@
 - [x] Redesign the home hero: two desktop columns, proof-points card (10+ years / 6 projects / 20 papers + availability line), Download CV + Email me + LinkedIn buttons with GitHub as a text link — verified in preview
 - [x] Add home page Experience timeline (6 entries, accent line + dots, dates left on desktop / above on phones, Download CV underneath) and renumber section labels 01–05 — verified in preview
 - [x] Add Publications, Certificates and training and Teaching lists to the About page only (thin dividers, roles in mono, DOI/Tableau links in a new tab) — verified in preview
+- [x] Home Writing section (3 LinkedIn post cards + Code on GitHub), footer links, 1200x630 share image on every page, Person JSON-LD on home, own titles for the two new case studies; checked all pages at 375/1440 in both themes and every external link/image
