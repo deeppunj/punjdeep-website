@@ -79,5 +79,8 @@ describe('about page credentials', () => {
     expect(credentials).toContain('border-b border-border py-3');
     expect(credentials.match(/target="_blank" rel="noopener noreferrer"/g)?.length).toBe(2);
     expect(credentials).toContain('font-mono text-xs text-muted-foreground');
+    // phone: role sits on its own line under the journal; desktop: same row, pushed right
+    expect(credentials).toContain('flex flex-col gap-1 border-b border-border py-3 sm:flex-row sm:items-baseline sm:justify-between');
+    expect(credentials).toContain('shrink-0 font-mono text-xs text-muted-foreground');
   });
 });

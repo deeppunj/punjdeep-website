@@ -43,7 +43,7 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
     <div className="max-w-2xl space-y-5 text-lg leading-relaxed md:col-span-2">{ABOUT.map(p => <p key={p}>{p}</p>)}<p>{ABOUT_SERIES.intro}{' '}{ABOUT_SERIES.posts.map((post, i) => <span key={post.href}><a href={post.href} target="_blank" rel="noopener noreferrer" className="text-base text-primary underline decoration-border underline-offset-4 hover:decoration-primary">{post.label}</a>{i < ABOUT_SERIES.posts.length - 1 ? ', ' : '.'}</span>)}</p><p className="pt-2 font-mono text-xs text-primary">Ghent, Belgium</p></div>
   </div></section>;
 }
-const credentialRow = 'flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-border py-3';
+const credentialRow = 'flex flex-col gap-1 border-b border-border py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6';
 const credentialLink = 'text-primary underline decoration-border underline-offset-4 hover:decoration-primary';
 
 export function AboutCredentials() {
@@ -54,7 +54,7 @@ export function AboutCredentials() {
       <ul className="mt-6 max-w-2xl border-t border-border">
         {PUBLICATIONS.items.map(p => <li key={p.journal} className={credentialRow}>
           <span className="min-w-0">{p.href ? <a href={p.href} target="_blank" rel="noopener noreferrer" className={credentialLink}>{p.journal}</a> : p.journal}</span>
-          <span className="font-mono text-xs text-muted-foreground">{p.role}</span>
+          <span className="shrink-0 font-mono text-xs text-muted-foreground">{p.role}</span>
         </li>)}
       </ul>
     </section>
