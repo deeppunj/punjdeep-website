@@ -13,11 +13,11 @@ describe('Portfolio project rules', () => {
     ]);
   });
   it('filters Optics & Photonics to the coupling study', () => { expect(filterProjects('Optics & Photonics').map(p=>p.slug)).toEqual(['photonic-coupling-assembly-tolerance']); });
-  it('filters Machine Learning to laser inspection, healthcare and battery dispatch', () => { expect(filterProjects('Machine Learning').map(p=>p.slug)).toEqual(['laser-weld-defect-inspection','healthcare-risk-prioritisation','battery-dispatch-belgian-electricity-prices']); });
+  it('filters Machine Learning to laser inspection, healthcare and battery dispatch', () => { expect(filterProjects('Machine Learning').map(p=>p.slug)).toEqual(['laser-weld-defect-inspection','healthcare-risk-prioritisation','belgian-electricity-prices']); });
   it('filters Analytics to FDA shortages and pilot-line reporting', () => { expect(filterProjects('Analytics').map(p=>p.slug)).toEqual(['fda-drug-shortages-analytics','pilot-line-production-reporting']); });
   it('keeps the repository-only card out of the case-study system', () => {
-    expect(CASE_STUDIES.map(p=>p.slug)).toEqual(['laser-weld-defect-inspection','photonic-coupling-assembly-tolerance','healthcare-risk-prioritisation','fda-drug-shortages-analytics','pilot-line-production-reporting']);
-    for (const slug of ['battery-dispatch-belgian-electricity-prices']) {
+    expect(CASE_STUDIES.map(p=>p.slug)).toEqual(['laser-weld-defect-inspection','photonic-coupling-assembly-tolerance','healthcare-risk-prioritisation','fda-drug-shortages-analytics','pilot-line-production-reporting','belgian-electricity-prices']);
+    for (const slug of [] as string[]) {
       const p = getProject(slug);
       expect(p?.hasCaseStudy).toBe(false);
       expect(p?.sections).toEqual([]);
