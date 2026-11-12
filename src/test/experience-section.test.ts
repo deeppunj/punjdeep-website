@@ -49,14 +49,14 @@ describe('home page experience section', () => {
     };
     const work = at('01 / Selected work');
     const experience = at('02 / Experience');
-    const capabilities = at('03 / Connected capabilities');
-    const about = at('04 / About');
-    const contact = at('05 / Get in touch');
+    const capabilities = at('04 / Connected capabilities');
+    const about = at('05 / About');
+    const contact = at('06 / Get in touch');
     expect(work).toBeLessThan(experience);
     expect(experience).toBeLessThan(capabilities);
     expect(capabilities).toBeLessThan(about);
     expect(about).toBeLessThan(contact);
-    expect(labels).not.toContain('04 / Get in touch');
+    expect(labels).not.toContain('05 / Get in touch');
   });
 
   it('uses the requested heading and a timeline of dots on an accent line', () => {

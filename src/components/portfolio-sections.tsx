@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ABOUT, ABOUT_SERIES, CERTIFICATES, CV_LINK, EXPERIENCE, EXPERTISE, PUBLICATIONS, SOCIAL, TEACHING } from '@/lib/site-content';
+import { ABOUT, ABOUT_SERIES, CERTIFICATES, CV_LINK, EXPERIENCE, EXPERTISE, PUBLICATIONS, SOCIAL, TEACHING, WRITING } from '@/lib/site-content';
 import { getProject } from '@/lib/projects';
 import { ProtectedEmail } from '@/components/protected-email';
 
@@ -24,10 +24,27 @@ export function ExperienceSection() {
     <div className="mt-8"><Button asChild size="lg"><a {...CV_LINK}>Download CV</a></Button></div>
   </section>;
 }
+export function WritingSection() {
+  return <section id="writing" className="page-width scroll-mt-28 section-space" aria-labelledby="writing-title">
+    <p className="section-label">03 / Writing</p>
+    <h2 id="writing-title" className="editorial-title mt-4 text-4xl sm:text-5xl">Light meets Data</h2>
+    <p className="mt-6 max-w-[68ch] leading-relaxed text-muted-foreground">{WRITING.text}</p>
+    <ul className="mt-8 grid gap-4 md:grid-cols-3">
+      {ABOUT_SERIES.posts.map((post, i) => <li key={post.href} className="min-w-0">
+        <a href={post.href} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col justify-between gap-4 rounded-lg border border-border bg-card p-5 transition-colors hover:border-primary">
+          <span className="font-mono text-[13px] uppercase tracking-wide text-muted-foreground">Post {i + 1} · LinkedIn</span>
+          <span className="text-lg font-semibold leading-snug">{WRITING.titles[i]}</span>
+          <span className="inline-flex items-center gap-1 text-sm text-primary">Read the post <ArrowUpRight aria-hidden className="size-4"/></span>
+        </a>
+      </li>)}
+    </ul>
+    <a href={WRITING.code} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-1 text-primary underline-offset-4 hover:underline">Code on GitHub <ArrowUpRight aria-hidden className="size-4"/></a>
+  </section>;
+}
 export function ExpertiseSection({ standalone = false }: { standalone?: boolean }) {
   const Heading = standalone ? 'h1' : 'h2';
   return <section id="expertise" className="page-width scroll-mt-28 section-space">
-    <p className="section-label">03 / Connected capabilities</p>
+    <p className="section-label">04 / Connected capabilities</p>
     <Heading className="editorial-title mt-4 text-4xl sm:text-5xl">Expertise, demonstrated through work</Heading>
     <div className="mt-8 grid gap-x-12 md:grid-cols-2">{EXPERTISE.map(group => <div key={group.title} className="border-t border-border py-8">
       <h3 className="text-xl font-medium">{group.title}</h3>
@@ -39,7 +56,7 @@ export function ExpertiseSection({ standalone = false }: { standalone?: boolean 
 export function AboutSection({ standalone = false }: { standalone?: boolean }) {
   const Heading = standalone ? 'h1' : 'h2';
   return <section id="about" className="border-y border-border bg-muted/40"><div className="page-width grid gap-8 section-space md:grid-cols-3">
-    <div className="min-w-0"><p className="section-label">04 / About</p><Heading className="editorial-title mt-4 text-4xl sm:text-5xl">Physics, measurement<br className="hidden md:block"/> & data.</Heading></div>
+    <div className="min-w-0"><p className="section-label">05 / About</p><Heading className="editorial-title mt-4 text-4xl sm:text-5xl">Physics, measurement<br className="hidden md:block"/> & data.</Heading></div>
     <div className="max-w-2xl space-y-5 text-lg leading-relaxed md:col-span-2">{ABOUT.map(p => <p key={p}>{p}</p>)}<p>{ABOUT_SERIES.intro}{' '}{ABOUT_SERIES.posts.map((post, i) => <span key={post.href}><a href={post.href} target="_blank" rel="noopener noreferrer" className="text-base text-primary underline decoration-border underline-offset-4 hover:decoration-primary">{post.label}</a>{i < ABOUT_SERIES.posts.length - 1 ? ', ' : '.'}</span>)}</p><p className="pt-2 font-mono text-xs text-primary">Ghent, Belgium</p></div>
   </div></section>;
 }
@@ -77,10 +94,10 @@ export function AboutCredentials() {
 export function ContactSection({ standalone = false }: { standalone?: boolean }) {
   const Heading = standalone ? 'h1' : 'h2';
   return <footer id="contact" className="page-width section-space">
-    <p className="section-label">05 / Get in touch</p>
+    <p className="section-label">06 / Get in touch</p>
     <Heading className="editorial-title mt-4 max-w-2xl text-4xl leading-tight sm:text-5xl">Let’s discuss your team’s technical challenges.</Heading>
     <p className="mt-8 max-w-xl leading-relaxed text-muted-foreground">Hiring for a data analyst, data scientist or optical engineering role? Send me an email or connect with me on LinkedIn.</p>
     <div className="mt-7 flex flex-wrap items-center gap-3"><ProtectedEmail /><Button asChild size="lg" variant="outline"><a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer">Connect on LinkedIn <ArrowUpRight aria-hidden/></a></Button><Button asChild size="lg" variant="outline"><a href={SOCIAL.github} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight aria-hidden/></a></Button></div>
-    <div className="mt-10 grid gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:grid-cols-[auto_minmax(0,1fr)]"><span>© 2026 Deep Punj, PhD</span><span className="min-w-0 text-balance sm:text-right"><span className="whitespace-nowrap">Optical Engineering ·</span> <span className="whitespace-nowrap">Data Science ·</span> <span className="whitespace-nowrap">Python &amp; Machine Learning</span></span></div>
+    <div className="mt-10 grid gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:grid-cols-[auto_minmax(0,1fr)]"><span className="flex flex-col gap-2"><span>© 2026 Deep Punj, PhD</span><nav aria-label="Footer links" className="flex flex-wrap items-center gap-x-2 gap-y-1"><a {...CV_LINK} className="hover:text-foreground underline-offset-4 hover:underline">CV</a><span aria-hidden>·</span><a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline-offset-4 hover:underline">LinkedIn</a><span aria-hidden>·</span><a href={SOCIAL.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline-offset-4 hover:underline">GitHub</a><span aria-hidden>·</span><a href={SOCIAL.tableau} target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline-offset-4 hover:underline">Tableau Public</a></nav></span><span className="min-w-0 text-balance sm:text-right"><span className="whitespace-nowrap">Optical Engineering ·</span> <span className="whitespace-nowrap">Data Science ·</span> <span className="whitespace-nowrap">Python &amp; Machine Learning</span></span></div>
   </footer>;
 }

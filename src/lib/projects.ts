@@ -8,7 +8,7 @@ export type Category = typeof CATEGORIES[number];
 export type StudySection = { title: string; paragraphs: string[]; items?: string[] };
 export type StudyFigure = { image: string; alt: string; caption: string };
 export type Project = {
-  slug: string; category: Exclude<Category, 'All'>; title: string; description: string;
+  slug: string; seoTitle?: string; seoDescription?: string; category: Exclude<Category, 'All'>; title: string; description: string;
   stack: string[]; image: string; alt: string; caption: string;
   links: { github: string; demo?: string; article?: string }; sections: StudySection[];
   /** False for repository-only cards: no case-study page, no sitemap entry. */
@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    slug: 'pilot-line-production-reporting', category: 'Analytics', title: 'Pilot-Line Production Reporting', label: 'Personal project · simulated data',
+    slug: 'pilot-line-production-reporting', seoTitle: 'Pilot-Line Production Reporting: SQL, Power BI and Data Quality — Deep Punj, PhD', seoDescription: 'Case study: data-quality rules, a PostgreSQL star schema, SQL KPIs and a Power BI report for a simulated semiconductor pilot line of 609 lots.', category: 'Analytics', title: 'Pilot-Line Production Reporting', label: 'Personal project · simulated data',
     description: 'A reporting solution for a semiconductor pilot line, built the way a reporting business analyst works: from the business problem to KPIs, a star schema, data-quality checks, SQL, a Power BI report and a live dashboard.',
     stack: ['Power BI', 'SQL', 'PostgreSQL', 'Data quality', 'Streamlit'],
     image: 'https://raw.githubusercontent.com/deeppunj/fab-reporting-ba/main/docs/powerbi_report.png',
@@ -117,7 +117,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    slug: 'belgian-electricity-prices', category: 'Machine Learning', title: 'Belgian Electricity Prices: Pipeline, Forecast and Battery', label: 'Personal project · public data',
+    slug: 'belgian-electricity-prices', seoTitle: 'Belgian Electricity Price Forecast and Battery Dispatch — Deep Punj, PhD', seoDescription: 'Case study: a pipeline of ten years of Belgian prices and grid load, a day-ahead forecast that cuts error from 23.2 to 17.2 EUR/MWh, and a battery schedule.', category: 'Machine Learning', title: 'Belgian Electricity Prices: Pipeline, Forecast and Battery', label: 'Personal project · public data',
     description: 'A data pipeline and a price forecast on ten years of Belgian electricity data, used to plan when a battery should charge and discharge.',
     stack: ['SQL', 'Databricks', 'Power BI', 'Forecasting', 'Python'],
     image: 'https://raw.githubusercontent.com/deeppunj/battery-dispatch-be/main/results/representative_dispatch_day.png',
