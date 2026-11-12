@@ -1,10 +1,11 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ProtectedEmail } from '@/components/protected-email';
 import { AboutSection, ContactSection, ExpertiseSection } from '@/components/portfolio-sections';
-import { CATEGORIES, filterProjects, type Category } from '@/lib/projects';
+import { CATEGORIES, filterHomeProjectCards, type Category } from '@/lib/projects';
+import { HomeProjectCard } from '@/components/home-project-card';
 import { CV_LINK, HERO_AVAILABILITY, HERO_PROOF, pageHead, SOCIAL } from '@/lib/site-content';
 import { cn } from '@/lib/utils';
 
@@ -15,7 +16,7 @@ export const Route = createFileRoute('/')({
 });
 function Index() {
   const [category, setCategory] = useState<Category>('All');
-  const projects = filterProjects(category);
+  const projects = filterHomeProjectCards(category);
   return <><main id="main">
     <section className="page-width pb-8 pt-8 sm:pb-10 sm:pt-10" aria-labelledby="intro-title">
       <div className="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-center lg:gap-12">
@@ -36,17 +37,10 @@ function Index() {
       </div>
     </section>
     <section id="projects" className="page-width scroll-mt-28 pb-16" aria-labelledby="projects-title">
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-5 border-t border-border pt-7 sm:flex sm:justify-between"><div className="min-w-0"><p className="section-label">01 / Selected work</p><h2 id="projects-title" className="editorial-title mt-3 text-4xl sm:text-5xl">Engineering insight. Practical tools.</h2></div><span className="shrink-0 font-mono text-sm text-muted-foreground" aria-live="polite">{projects.length} projects</span></div>
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-5 border-t border-border pt-7 sm:flex sm:justify-between"><div className="min-w-0"><p className="section-label">01 / Selected work</p><h2 id="projects-title" className="editorial-title mt-3 text-4xl sm:text-5xl">From raw data to a tested result.</h2></div><span className="shrink-0 font-mono text-sm text-muted-foreground" aria-live="polite">{projects.length} projects</span></div>
       <p className="mt-6 text-sm text-muted-foreground">Primary discipline</p>
       <div className="mb-8 mt-2 flex flex-wrap gap-2" role="group" aria-label="Filter projects by primary discipline">{CATEGORIES.map(c => <Button key={c} variant={category === c ? 'default' : 'ghost'} aria-pressed={category === c} onClick={() => setCategory(c)} className="h-10">{c}</Button>)}</div>
-      <div className="grid gap-8 md:grid-cols-2">{projects.map((p) => { const study = p.hasCaseStudy !== false; return <article key={p.slug} className="flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-primary/50">
-        {study
-          ? <Link to="/projects/$slug" params={{slug:p.slug}} aria-label={`Read case study: ${p.title}`} className="block aspect-[16/10] overflow-hidden border-b border-border p-5"><img src={p.image} alt={p.alt} className="project-image" loading="lazy" width="800" height="500"/></Link>
-          : <div className="aspect-[16/10] overflow-hidden border-b border-border p-5"><img src={p.image} alt={p.alt} className="project-image" loading="lazy" width="800" height="500"/></div>}
-        <div className="flex flex-1 flex-col p-6 sm:p-7"><p className="section-label">{p.category}</p><h3 className="mt-3 text-2xl font-medium leading-tight">{study ? <Link to="/projects/$slug" params={{slug:p.slug}} className="hover:text-primary">{p.title}</Link> : p.title}</h3><p className="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">{p.description}</p><ul className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-xs text-muted-foreground">{p.stack.map(s => <li key={s}>{s}</li>)}</ul>
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">{study && <Button asChild variant="link" className="h-auto p-0"><Link to="/projects/$slug" params={{slug:p.slug}}>Read case study <ArrowUpRight aria-hidden/></Link></Button>}<Button asChild variant="ghost" className="h-auto p-0 text-muted-foreground"><a href={p.links.github} target="_blank" rel="noopener noreferrer">View code <ArrowUpRight aria-hidden/></a></Button>{p.links.demo && <Button asChild variant="link"><a href={p.links.demo}>Live demo</a></Button>}</div>
-        </div>
-      </article>; })}</div>
+      <div className="home-project-grid grid gap-8">{projects.map(p => <HomeProjectCard key={p.slug} project={p} />)}</div>
     </section>
     <ExpertiseSection/><AboutSection/>
   </main><ContactSection/></>;

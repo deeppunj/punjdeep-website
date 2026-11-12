@@ -51,6 +51,7 @@
   --color-highlight: var(--highlight);
   --color-primary-hover: var(--primary-hover);
   --color-raised: var(--raised);
+  --color-plot-surface: oklch(1 0 0);
 }
 
 :root {
@@ -109,5 +110,8 @@
   .editorial-title { font-family: var(--font-editorial); font-weight: 400; font-optical-sizing: auto; }
   .section-label { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; color: var(--primary); }
   .project-image { width: 100%; height: 100%; object-fit: contain; background: var(--card); }
+  .home-project-grid { grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 768px) { .home-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1200px) { .home-project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (min-width: 640px) { .page-width { padding-inline: 48px; } }
 }

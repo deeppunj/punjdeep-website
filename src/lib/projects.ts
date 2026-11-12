@@ -115,3 +115,39 @@ export const LEGACY_PROJECT_SLUGS: Record<string, string> = {
   'project-two': 'photonic-coupling-assembly-tolerance',
 };
 export const filterProjects = (category: Category) => category === 'All' ? PROJECTS : PROJECTS.filter(p => p.category === category);
+
+/** Homepage presentation overrides leave existing case studies and URLs unchanged. */
+export type HomeProjectCard = Project & { provenance: string; pendingStudyPath?: string };
+const HOME_CARD_ORDER = [
+  'pilot-line-production-reporting',
+  'laser-weld-defect-inspection',
+  'battery-dispatch-belgian-electricity-prices',
+  'photonic-coupling-assembly-tolerance',
+  'healthcare-risk-prioritisation',
+  'fda-drug-shortages-analytics',
+];
+const HOME_CARD_DETAILS: Record<string, Partial<Project> & { provenance: string; pendingStudyPath?: string }> = {
+  'pilot-line-production-reporting': {
+    provenance: 'Personal project · simulated data',
+    description: 'A reporting pipeline for a simulated semiconductor pilot line (609 lots): data-quality rules, a PostgreSQL star schema, SQL KPIs, a Power BI report and a live dashboard. It finds the bottleneck (lithography, 45% of all waiting time) and an etch tool whose lots yield 75.8% against 86.1%.',
+    links: { github: 'https://github.com/deeppunj/fab-reporting-ba', demo: 'https://fab-reporting-ba.streamlit.app' },
+    pendingStudyPath: '/projects/pilot-line-production-reporting',
+  },
+  'laser-weld-defect-inspection': { provenance: 'Personal project · public lab data' },
+  'battery-dispatch-belgian-electricity-prices': {
+    provenance: 'Personal project · public data',
+    title: 'Belgian Electricity Prices: Pipeline, Forecast and Battery',
+    description: "A Python and SQL pipeline, in PostgreSQL and in Databricks, builds 87,577 hours of Belgian prices and grid load. A forecast cuts the price error from 23.2 to 17.2 EUR/MWh against a simple baseline and plans a battery's charging, with a Power BI report on top.",
+    stack: ['SQL', 'Databricks', 'Power BI'],
+    pendingStudyPath: '/projects/belgian-electricity-prices',
+  },
+  'photonic-coupling-assembly-tolerance': { provenance: 'Personal project · simulation' },
+  'healthcare-risk-prioritisation': { provenance: 'Personal project · synthetic health records' },
+  'fda-drug-shortages-analytics': { provenance: 'Personal project · public FDA data' },
+};
+export const HOME_PROJECT_CARDS: HomeProjectCard[] = HOME_CARD_ORDER.flatMap(slug => {
+  const project = getProject(slug);
+  const details = HOME_CARD_DETAILS[slug];
+  return project && details ? [{ ...project, ...details, stack: (details.stack ?? project.stack).slice(0, 3) }] : [];
+});
+export const filterHomeProjectCards = (category: Category) => HOME_PROJECT_CARDS.filter(p => category === 'All' || p.category === category);
