@@ -36,9 +36,9 @@ function Index() {
       </div>
       </div>
     </section>
-    <section id="projects" className="page-width scroll-mt-28 pb-16" aria-labelledby="projects-title">
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-5 border-t border-border pt-7 sm:flex sm:justify-between"><div className="min-w-0"><p className="section-label">01 / Selected work</p><h2 id="projects-title" className="editorial-title mt-3 text-4xl sm:text-5xl">From raw data to a tested result.</h2></div><span className="shrink-0 font-mono text-sm text-muted-foreground" aria-live="polite">{projects.length} projects</span></div>
-      <p className="mt-6 text-sm text-muted-foreground">Primary discipline</p>
+    <section id="projects" className="page-width scroll-mt-28 section-space" aria-labelledby="projects-title">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-5 sm:flex sm:justify-between"><div className="min-w-0"><p className="section-label">01 / Selected work</p><h2 id="projects-title" className="editorial-title mt-4 text-4xl sm:text-5xl">From raw data to a tested result.</h2></div><span className="shrink-0 font-mono text-sm text-muted-foreground" aria-live="polite">{projects.length} projects</span></div>
+      <p className="mt-8 text-base text-muted-foreground">Primary discipline</p>
       <div className="mb-8 mt-2 flex flex-wrap gap-2" role="group" aria-label="Filter projects by primary discipline">{CATEGORIES.map(c => <Button key={c} variant={category === c ? 'default' : 'ghost'} aria-pressed={category === c} onClick={() => setCategory(c)} className="h-10">{c}</Button>)}</div>
       <div className="home-project-grid grid gap-8">{projects.map(p => <HomeProjectCard key={p.slug} project={p} />)}</div>
     </section>
