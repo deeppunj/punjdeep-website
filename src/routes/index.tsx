@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
+import { ArrowUpRight, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { ProtectedEmail } from '@/components/protected-email';
 import { AboutSection, ContactSection, ExpertiseSection } from '@/components/portfolio-sections';
 import { CATEGORIES, filterProjects, type Category } from '@/lib/projects';
-import { pageHead, SOCIAL } from '@/lib/site-content';
+import { CV_LINK, HERO_AVAILABILITY, HERO_PROOF, pageHead, SOCIAL } from '@/lib/site-content';
+import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/')({
   staticData: { sitemap: true },
