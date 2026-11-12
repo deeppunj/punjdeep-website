@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ABOUT, ABOUT_SERIES, CV_LINK, EXPERIENCE, EXPERTISE, SOCIAL } from '@/lib/site-content';
+import { ABOUT, ABOUT_SERIES, CERTIFICATES, CV_LINK, EXPERIENCE, EXPERTISE, PUBLICATIONS, SOCIAL, TEACHING } from '@/lib/site-content';
 import { getProject } from '@/lib/projects';
 import { ProtectedEmail } from '@/components/protected-email';
 
