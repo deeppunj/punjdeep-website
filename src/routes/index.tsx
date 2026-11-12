@@ -27,8 +27,8 @@ function Index() {
       </div>
       <div className="mt-8 lg:mt-0">
         <div className="rounded-md border border-border bg-card p-6 sm:p-7">
-          <ul className="grid grid-cols-1 sm:grid-cols-3">
-            {HERO_PROOF.map((point, i) => <li key={point.value} className={cn('py-3 sm:px-5 sm:py-2 sm:first:pl-0 sm:last:pr-0', i > 0 && 'border-t border-border sm:border-t-0 sm:border-l')}><span className="editorial-title block text-3xl leading-none sm:text-4xl">{point.value}</span><span className="mt-2 block font-mono text-xs uppercase tracking-wide text-muted-foreground">{point.label}</span></li>)}
+          <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1">
+            {HERO_PROOF.map((point, i) => <li key={point.value} className={cn('py-3 md:px-5 md:py-2 lg:px-0 lg:py-3 md:first:pl-0 md:last:pr-0', i > 0 && 'border-t border-border md:border-t-0 md:border-l lg:border-t lg:border-l-0')}><span className="editorial-title block text-3xl leading-none whitespace-nowrap lg:text-4xl">{point.value}</span><span className="mt-2 block font-mono text-xs uppercase tracking-wide text-muted-foreground">{point.label}</span></li>)}
           </ul>
           <p className="mt-4 border-t border-border pt-4 font-mono text-xs leading-relaxed text-muted-foreground">{HERO_AVAILABILITY}</p>
         </div>
